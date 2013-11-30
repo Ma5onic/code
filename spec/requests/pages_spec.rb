@@ -7,7 +7,7 @@ describe "Pages" do
 	describe "Home page" do
 		before { visit root_path }
 
-		it { should have_content('Tim Twitter') }
+		it { should have_content('Code') }
 		it { should have_title(full_title('')) }
 		it { should_not have_title('| Home') }
 	end

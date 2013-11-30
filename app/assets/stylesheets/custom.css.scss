@@ -1,0 +1,15 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+
+/* Mixins, Variables, etc. */
+$lightGray: #999;
+
+body {font-family: 'Droid Sans', 'Helvetica-Neue', Arial, sans-serif;padding-top:31px;}
+html {overflow-y: scroll;}
+.center {text-align:center;}
+
+/* Home */
+.home-first-banner {background:#9b59b6;width:100%;height:400px;}

@@ -1,0 +1,8 @@
+<% provide(:title, @user.username) %>
+
+<div class="user-info">
+	<div class="user-gravatar">
+		<%= gravatar_for @user, size: 180, border: true %>
+	</div>
+	<span class="username"><%= @user.username %></span>
+</div>

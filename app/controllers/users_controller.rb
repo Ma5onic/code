@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+	before_action :signed_in_user, only: [:edit, :update, :destroy, :dashboard, :courses]
+	before_action :correct_user,	 only: [:edit, :update]
+	before_action :admin_user,     only: :destroy
+	before_action :already_signed_in_user, only: [:create, :new]
 
 	def new
 		@user = User.new
@@ -8,53 +12,53 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			sign_in @user
-			flash[:success] = "Welcome to Tim Twitter!"
-			redirect_to @user
+			flash[:success] = "Welcome to Code!"
+			redirect_to custom_user_path @user
 		else
 			render 'new'
 		end
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find_by_permalink(params[:permalink])
 	end
 
 	def edit
-	end
+  end
 
 	def update
 		if @user.update_attributes(user_params)
-			flash[:success] = "Profile updated successfully"
-			redirect_to @user
+			flash[:success] = "Profile updated"
+			redirect_to custom_user_path @user
 		else
 			render 'edit'
 		end
 	end
 
 	def destroy
-		User.find(params[:id]).destroy
+		User.find_by_username(params[:permalink]).destroy
 		flash[:success] = "User deleted."
-		redirect_to users_url
+		redirect_to root_url
+	end
+
+	def dashboard
+	end
+
+	def courses
+		@languages = Language.all
 	end
 
 	private
 
 		def user_params
-			params.require(:user).permit(:name, :email, :username, 
+			params.require(:user).permit(:name, :email, :username, :location,
 																	 :password, :password_confirmation)
 		end
 
 		# Before filters
 
-		def signed_in_user
-			unless signed_in?
-				store_location
-				redirect_to signin_url, notice: "Please sign in."
-			end
-		end
-
 		def correct_user
-			@user = User.find(params[:id])
+			@user = User.find_by_permalink(params[:permalink])
 			redirect_to(root_url) unless current_user?(@user)
 		end
 

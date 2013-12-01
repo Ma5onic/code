@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	before_save { email.downcase! }
 	before_save { username.downcase! }
 	before_create :create_remember_token
+	before_create :create_permalink
 
 	VALID_USERNAME_REGEXP = /\A^[-a-zA-Z0-9_]*$\z/i
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
@@ -23,9 +24,17 @@ class User < ActiveRecord::Base
 		Digest::SHA1.hexdigest(token.to_s)
 	end
 
+	def to_param
+		permalink
+	end
+
 	private
 
 		def create_remember_token
 			self.remember_token = User.encrypt(User.new_remember_token)
+		end
+
+		def create_permalink
+			self.permalink = username.downcase
 		end
 end

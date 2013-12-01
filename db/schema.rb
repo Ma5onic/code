@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201010722) do
+ActiveRecord::Schema.define(version: 20131201210446) do
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -23,6 +31,8 @@ ActiveRecord::Schema.define(version: 20131201010722) do
     t.string   "location"
     t.string   "remember_token"
     t.integer  "karma",           default: 0
+    t.string   "permalink"
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

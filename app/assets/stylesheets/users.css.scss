@@ -1,3 +1,26 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Users */
+
+	/* signup */
+.signup-panel {margin:0 auto; width: 400px;}
+.input-group {margin:10px 0;}
+#error-explanation {color: #f00;margin:25px 0;
+  ul {margin: 19px 0 18px 0;}
+}
+
+	/* user profile */
+.user-info .user-username {font-weight:bold;font-size:30px;margin-left:20px;}
+.user-info .user-username, .user-info .gravatar img {display:inline;}
+.gravatar.border {border:1px solid #A8A8A8;}
+.border {padding:3px;}
+
+	/* header */
+.name-next-to-gravatar {padding-right:5px;}
+.nav.navbar-nav li a {margin: auto 0;}
+
+	/* edit */
+.edit-gravatar {margin-top:10px;}
+.input-bundle {margin-bottom:20px;}

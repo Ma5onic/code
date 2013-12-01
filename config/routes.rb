@@ -1,16 +1,25 @@
 Code::Application.routes.draw do
-  resources :users
+  get "courses/new"
+  get "languages/new"
+  resources :users,  except: [:edit, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :languages
 
   root 'pages#home'
 
-  match '/help',    to: 'pages#help',    via: 'get'
-  match '/about',   to: 'pages#about',   via: 'get'
-  match '/contact', to: 'pages#contact', via: 'get'
+  match '/help',      to: 'pages#help',      via: 'get'
+  match '/about',     to: 'pages#about',     via: 'get'
+  match '/contact',   to: 'pages#contact',   via: 'get'
+  match '/dashboard', to: 'users#dashboard', via: 'get'
+  match '/courses',   to: 'courses#index',   via: 'get'
 
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+
+  match '/:permalink',      to: 'users#destroy', via: 'delete', as: 'custom_delete_user'
+  get   '/:permalink',      to: 'users#show',    as: 'custom_user'
+  get   '/:permalink/edit', to: 'users#edit',    as: 'custom_edit_user'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

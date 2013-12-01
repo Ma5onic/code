@@ -4,5 +4,12 @@
 	<div class="user-gravatar">
 		<%= gravatar_for @user, size: 180, border: true %>
 	</div>
-	<span class="username"><%= @user.username %></span>
+	<span class="user-username"><%= @user.username %></span>
+	<% if @user.name %>
+		<span class="user-name"><%= @user.name %></span>
+	<% end %>
+	<% if current_user.admin? && !current_user?(@user) %>
+    <%= link_to "delete user as admin", custom_delete_user_path, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
 </div>

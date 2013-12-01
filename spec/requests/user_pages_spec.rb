@@ -13,7 +13,7 @@ describe "User pages" do
 
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
-		before { visit user_path(user) }
+		before { visit custom_user_path(user) }
 
 		it { should have_content(user.username) }
 		it { should have_title(full_title(user.username)) }
@@ -44,4 +44,24 @@ describe "User pages" do
 			end
 		end
 	end
+
+	describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+    	sign_in user
+    	visit custom_edit_user_path(user)
+    end 
+
+    describe "page" do
+      it { should have_content("Update your profile") }
+      it { should have_title("Edit User") }
+      it { should have_link('change', href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+  end
 end

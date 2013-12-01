@@ -11,8 +11,37 @@
     </div>
     <div class="collapse navbar-collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Sign In", '#' %></li>
-        <li><%= link_to "Create Account", signup_path %></li>
+        <% unless signed_in? %>
+          <li><%= link_to "Sign In", signin_path %></li>
+          <li><%= link_to "Create Account", signup_path %></li>
+        <% else %>
+          <li><%= link_to(current_user.karma.to_s + " Karma", signup_path) %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="name-next-to-gravatar"><%= current_user.username %></span> 
+              <span class="header-gravatar"><%= gravatar_for current_user, size: 33, circle: true %></span> 
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="<%= user_path(current_user) %>">
+                  <span class="glyphicon glyphicon-comment"></span> My Profile
+                </a>
+              </li>
+              <li>
+                <a href="<%= edit_user_path(current_user) %>">
+                  <span class="glyphicon glyphicon-cog"></span> Settings
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="<%= signout_path %>" data-method="delete" rel="nofollow">
+                  <span class="glyphicon glyphicon-remove"></span> Sign Out
+                </a>
+              </li>
+            </ul>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

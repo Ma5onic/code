@@ -17,7 +17,7 @@
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
 	<%= yield %>
-	<%= debug(params) if Rails.env.development? %>
+	<%= debug(params) if Rails.env.development? && ((controller.controller_name != "lessons") && (controller.action_name != "show")) %>
 </div>
 
 <%= render 'layouts/footer' %>

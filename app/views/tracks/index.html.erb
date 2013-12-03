@@ -4,7 +4,7 @@
 	<%= link_to "Create new track for #{@course.name}", new_course_track_path(@course), class: "button button-red action-button-top-right" %>
 <% end %>
 <%= link_to "Back to courses", courses_path, class: "button button-blue action-button-top-right" %>
-<h1>Tracks</h1>
+<h1><%= @course.name %></h1>
 
 <div class="tracks-container">
 <% @tracks.each do |track| %>
@@ -15,10 +15,10 @@
 																											data: { confirm: "You sure?" },
                                              					title: track.name, 
                                              					class: "academia-card-delete" %>
-      <%= link_to "update", custom_track_path(track),class: "academia-card-update" %>
+      <%= link_to "edit", edit_track_path(track), class: "academia-card-update" %>
 			<h2 class="academia-card-info-title"><%= track.name %></h2>
 			<div class="academia-card-info-description"><%= track.description %></div>
-			<%= link_to "View track", custom_track_path(track), class: "button button-red" %>
+			<%= link_to "View track", lessons_path(track), class: "button button-green" %>
 		</div>
 	</div>
 <% end %>

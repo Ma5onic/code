@@ -1,11 +1,11 @@
-<% provide(:title, 'Edit Course ' + @course.name) %>
+<% provide(:title, 'Edit Track ' + @track.name) %>
 
 <div class="panel panel-default signup-panel">
 	<div class="panel-heading">
-		<h2 class="panel-title">Update <%= @course.name %></h3>
+		<h2 class="panel-title">Update <%= @track.name %></h3>
 	</div>
 	<div class="panel-body">
-		<%= form_for(@course) do |f| %>
+		<%= form_for(@track) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
 			<div class="input-group">

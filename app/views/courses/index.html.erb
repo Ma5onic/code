@@ -14,7 +14,7 @@
 																												data: { confirm: "You sure?" },
                                                         title: course.name, 
                                                         class: "academia-card-delete" %>
-      <%= link_to "update", course_edit_path(course), class: "academia-card-update" %>
+      <%= link_to "edit", course_edit_path(course), class: "academia-card-update" %>
 			<h2 class="academia-card-info-title"><%= course.name %></h2>
 			<div class="academia-card-info-description"><%= course.description %></div>
 			<%= link_to "View course", tracks_path(course), class: "button button-blue" %>

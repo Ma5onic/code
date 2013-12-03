@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_action :admin_user, only: [:new, :create, :destroy]
+  
   def new
   	@track = Track.new
   end
@@ -20,18 +22,24 @@ class TracksController < ApplicationController
   end
 
   def edit
+    @track = Track.find_by_permalink(params[:permalink])
   end
 
   def update
+    @track = Track.find_by_permalink(params[:permalink])
+    @course = Course.find(@track.course_id)
     if @track.update_attributes(track_params)
       flash[:success] = "Track updated successfully"
-      redirect_to courses_url
+      redirect_to tracks_path @course
     else
       render 'edit'
     end
   end
 
   def destroy
+    Track.find_by_permalink(params[:permalink]).destroy
+    flash[:success] = "Track successfully deleted."
+    redirect_to courses_url
   end
 
   def index

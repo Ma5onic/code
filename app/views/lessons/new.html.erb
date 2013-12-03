@@ -1,0 +1,38 @@
+<% provide(:title, 'New Course') %>
+
+<div class="panel panel-default signup-panel">
+	<div class="panel-heading">
+		<h2 class="panel-title">Add New Lesson to '<%= @track.name %>'</h3>
+	</div>
+	<div class="panel-body">
+		<%= form_for(@lesson) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+				<%= f.text_field :name, class: "form-control Username", placeholder: "Name" %>
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
+				<%= f.text_area :content, class: "form-control", placeholder: "An explanation before the task should go here", rows: "6"%>
+			</div>
+			
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+				<%= f.text_area :task, class: "form-control", placeholder: "Task", rows: "6"%>
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-bullhorn"></span></span>
+				<%= f.text_area :hints, class: "form-control", placeholder: "Hints", rows: "6"%>
+			</div>
+
+			<div class="new-academia-action">
+				<%= f.submit "Create Lesson", class: "btn btn-large btn-primary" %>
+			</div>
+		<% end %>
+	</div>
+	<div class="panel-footer">
+	</div>
+</div>

@@ -3,9 +3,9 @@ Code::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   # Shallow nesting to ensure paths (URLs) are not filled with unnecessary information.
-  resources :courses, except: [:show, :destroy, :update, :edit], shallow: true do
-    resources :tracks, except: [:index, :create, :new] do
-      resources :lessons
+  resources :courses, except: [:edit, :update, :destroy, :show], shallow: true do
+    resources :tracks, except: [:edit, :update, :destroy, :index, :create, :new] do
+      resources :lessons, except: [:edit, :update, :destroy, :index, :create, :new, :show]
     end
   end
 
@@ -17,12 +17,12 @@ Code::Application.routes.draw do
   match '/dashboard', to: 'users#dashboard', via: 'get'
 
   # Courses
-  match '/courses/:permalink',      to: 'courses#show',    via: 'get', as: 'custom_course'
-  match '/courses/:permalink',      to: 'courses#destroy', via: 'delete'
-  match '/courses/:permalink/edit', to: 'courses#edit',    via: 'get', as: 'course_edit'
-  match '/courses/:permalink',      to: 'courses#update',  via: 'put', as: 'course'
-  match '/courses/:permalink',      to: 'courses#update',  via: 'patch'
-  match '/courses/:permalink',      to: 'courses#update',  via: 'post'
+  match '/courses/:permalink', to: 'courses#show',    via: 'get', as: 'custom_course'
+  match '/courses/:permalink',        to: 'courses#destroy', via: 'delete'
+  match '/courses/:permalink/edit',   to: 'courses#edit',    via: 'get', as: 'course_edit'
+  match '/courses/:permalink',        to: 'courses#update',  via: 'put', as: 'course'
+  match '/courses/:permalink',        to: 'courses#update',  via: 'patch'
+  match '/courses/:permalink',        to: 'courses#update',  via: 'post'
 
 
   # Tracks
@@ -33,7 +33,23 @@ Code::Application.routes.draw do
   match '/courses/:permalink/tracks',     to: 'tracks#index',  via: 'get', as: 'tracks'
 
   # Short Tracks Permalinks
-  match '/track/:permalink', to: 'tracks#show',  via: 'get', as: 'custom_track'
+  match '/track/:permalink',      to: 'tracks#show',    via: 'get', as: 'custom_track'
+  match '/track/:permalink/edit', to: 'tracks#edit',    via: 'get', as: 'edit_track'
+  match '/tracks/:permalink',     to: 'tracks#update',  via: 'put'
+  match '/tracks/:permalink',     to: 'tracks#update',  via: 'post'
+  match '/tracks/:permalink',     to: 'tracks#update',  via: 'patch'
+  match '/tracks/:permalink',     to: 'tracks#destroy', via: 'delete'
+
+  # Lessons
+  match '/tracks/:permalink/lessons/new', to: 'lessons#new',    via: 'get', as: 'new_track_lesson'
+  match '/tracks/:permalink/lessons',     to: 'lessons#create', via: 'post'
+  match '/tracks/:permalink/lessons',     to: 'lessons#create', via: 'put'
+  match '/tracks/:permalink/lessons',     to: 'lessons#create', via: 'patch'
+  match '/tracks/:permalink/lessons',     to: 'lessons#index',  via: 'get', as: 'lessons'
+
+  # Short Lesson Permalinks
+  match '/lesson/:permalink', to: 'lessons#show', via: 'get', as: 'custom_lesson'
+  match '/lessons/:permalink', to: 'lessons#destroy', via: 'delete', as: 'delete_lesson'
 
   # Users
   match '/signup',  to: 'users#new',        via: 'get'

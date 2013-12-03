@@ -1,0 +1,29 @@
+<% provide(:title, 'Edit Course') %>
+
+<div class="panel panel-default signup-panel">
+	<div class="panel-heading">
+		<h2 class="panel-title">Update <%= @course.name %></h3>
+	</div>
+	<div class="panel-body">
+		<%= form_for(@course) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+				<%= f.text_field :name, class: "form-control Username", placeholder: "Name" %>
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
+				<%= f.text_area :description, class: "form-control", placeholder: "Description", rows: "6", id: "courseDescription" %>
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span>
+				<%= f.text_field :permalink, class: "form-control", placeholder: "Permalink" %>
+			</div>
+
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

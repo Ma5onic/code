@@ -1,20 +1,23 @@
 <% provide(:title, 'Courses') %>
 
 <% if current_user.admin? %>
-	<%= link_to "Create new course", new_course_path, class: "button button-red course-card-button action-course-button" %>
+	<%= link_to "Create new course", new_course_path, class: "button button-red action-button-top-right" %>
 <% end %>
 <h1>Courses</h1>
 
 <div class="courses-container">
 <% @courses.each do |course| %>
-	<div class="course-card">
-		<div class="course-card-logo"></div>
-		<div class="course-card-info">
-			<%= link_to "delete as admin", course, method: :delete, data: { confirm: "You sure?" },
-                                             title: course.name, class: "course-card-delete" %>
-			<h2 class="course-card-info-title"><%= course.name %></h2>
-			<div class="course-card-info-description"><%= course.description %></div>
-			<%= link_to "View course", custom_course_tracks_path(course), class: "button button-red course-card-button" %>
+	<div class="academia-card course-card">
+		<div class="academia-card-logo"></div>
+		<div class="academia-card-info">
+			<%= link_to "delete", custom_course_path(course), method: :delete, 
+																												data: { confirm: "You sure?" },
+                                                        title: course.name, 
+                                                        class: "academia-card-delete" %>
+      <%= link_to "update", course_edit_path(course), class: "academia-card-update" %>
+			<h2 class="academia-card-info-title"><%= course.name %></h2>
+			<div class="academia-card-info-description"><%= course.description %></div>
+			<%= link_to "View course", tracks_path(course), class: "button button-blue" %>
 		</div>
 	</div>
 <% end %>

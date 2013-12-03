@@ -1,6 +1,25 @@
 <% provide(:title, 'Tracks') %>
 
 <% if current_user.admin? %>
-	<%= link_to "Create new track for #{@course.name}", new_course_track_path(@course), class: "button button-red course-card-button action-course-button" %>
+	<%= link_to "Create new track for #{@course.name}", new_course_track_path(@course), class: "button button-red action-button-top-right" %>
 <% end %>
+<%= link_to "Back to courses", courses_path, class: "button button-blue action-button-top-right" %>
 <h1>Tracks</h1>
+
+<div class="tracks-container">
+<% @tracks.each do |track| %>
+	<div class="academia-card track-card">
+		<div class="academia-card-logo"></div>
+		<div class="academia-card-info">
+			<%= link_to "delete", custom_track_path(track), method: :delete, 
+																											data: { confirm: "You sure?" },
+                                             					title: track.name, 
+                                             					class: "academia-card-delete" %>
+      <%= link_to "update", custom_track_path(track),class: "academia-card-update" %>
+			<h2 class="academia-card-info-title"><%= track.name %></h2>
+			<div class="academia-card-info-description"><%= track.description %></div>
+			<%= link_to "View track", custom_track_path(track), class: "button button-red" %>
+		</div>
+	</div>
+<% end %>
+</div>

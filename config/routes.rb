@@ -1,11 +1,10 @@
 Code::Application.routes.draw do
-  get "tracks/new"
-  resources :users,  except: [:edit, :show, :destroy]
+  resources :users,  except: [:edit, :show, :destroy, :update]
   resources :sessions, only: [:new, :create, :destroy]
 
-  # Shallow nesting to ensure paths are not filled with unnecessary information.
-  resources :courses, except: :show, shallow: true do
-    resources :tracks do
+  # Shallow nesting to ensure paths (URLs) are not filled with unnecessary information.
+  resources :courses, except: [:show, :destroy, :update, :edit], shallow: true do
+    resources :tracks, except: [:index, :create, :new] do
       resources :lessons
     end
   end
@@ -17,12 +16,33 @@ Code::Application.routes.draw do
   match '/contact',   to: 'pages#contact',   via: 'get'
   match '/dashboard', to: 'users#dashboard', via: 'get'
 
-  match '/courses/:permalink', to: 'courses#show', via: 'get', as: 'custom_course'
+  # Courses
+  match '/courses/:permalink',      to: 'courses#show',    via: 'get', as: 'custom_course'
+  match '/courses/:permalink',      to: 'courses#destroy', via: 'delete'
+  match '/courses/:permalink/edit', to: 'courses#edit',    via: 'get', as: 'course_edit'
+  match '/courses/:permalink',      to: 'courses#update',  via: 'put', as: 'course'
+  match '/courses/:permalink',      to: 'courses#update',  via: 'patch'
+  match '/courses/:permalink',      to: 'courses#update',  via: 'post'
 
+
+  # Tracks
+  match '/courses/:permalink/tracks/new', to: 'tracks#new',    via: 'get', as: 'new_course_track'
+  match '/courses/:permalink/tracks',     to: 'tracks#create', via: 'patch'
+  match '/courses/:permalink/tracks',     to: 'tracks#create', via: 'put'
+  match '/courses/:permalink/tracks',     to: 'tracks#create', via: 'post'
+  match '/courses/:permalink/tracks',     to: 'tracks#index',  via: 'get', as: 'tracks'
+
+  # Short Tracks Permalinks
+  match '/track/:permalink', to: 'tracks#show',  via: 'get', as: 'custom_track'
+
+  # Users
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
+  match '/users/:permalink', to: 'users#update', via: 'put', as: 'user'
+  match '/users/:permalink', to: 'users#update', via: 'patch'
+  match '/users/:permalink', to: 'users#update', via: 'post'
 
   # All paths must be declared before this to ensure Rails does not think
   # it is a username for a user (:permalink)

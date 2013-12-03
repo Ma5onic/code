@@ -5,7 +5,7 @@
 		<h2 class="panel-title">Add New Course</h3>
 	</div>
 	<div class="panel-body">
-		<%= form_for(@track) do |f| %>
+		<%= form_for @track, url: {action: :create} do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
 			<div class="input-group">

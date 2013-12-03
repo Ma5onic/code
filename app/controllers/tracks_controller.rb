@@ -5,9 +5,9 @@ class TracksController < ApplicationController
 
   def create
     @course = Course.find_by_permalink(params[:permalink])
-    @track = course.track.create(track_params)
+    @track = @course.tracks.create(track_params)
     if @track.save
-      flash[:success] = "Course created!"
+      flash[:success] = "Track created!"
       redirect_to courses_url
     else
       render 'new'
@@ -15,13 +15,20 @@ class TracksController < ApplicationController
   end
 
   def show
-  	redirect_to courses_url
+  	@track = Track.find_by_permalink(params[:permalink])
+    @course = Course.find(@track.course_id)
   end
 
   def edit
   end
 
   def update
+    if @track.update_attributes(track_params)
+      flash[:success] = "Track updated successfully"
+      redirect_to courses_url
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -39,6 +46,6 @@ class TracksController < ApplicationController
 		end
 
     def track_params
-      params.require(:course).permit(:name, :description, :permalink)
+      params.require(:track).permit(:name, :description, :permalink)
     end
 end

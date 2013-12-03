@@ -7,15 +7,17 @@ $font-family-sans-serif: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-s
 body {font-family: 'Open Sans', 'Helvetica-Neue', Helvetica, Arial, sans-serif;margin-top:80px;}
 html {overflow-y: scroll;}
 
+/* Main Functionality */
+.action-button-top-right {float:right;}
+
 /* Buttons */
-.button {margin-top: 10px;margin-right: 10px;padding: 14px 26px;font-size: 14px;line-height: 100%;text-shadow: 0 1px rgba(0, 0, 0, 0.4);color: #fff;display:inline-block;vertical-align: middle;text-align: center;cursor: pointer;font-weight: bold;transition: background 0.1s ease-in-out;-webkit-transition: background 0.1s ease-in-out;-moz-transition: background 0.1s ease-in-out;-ms-transition: background 0.1s ease-in-out;-o-transition: background 0.1s ease-in-out;text-shadow: 0 1px rgba(0, 0, 0, 0.3);color: #fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;font-family: 'Helvetica Neue', Helvetica, sans-serif;}
+.button {margin: 10px 10px 20px 10px;padding: 14px 26px;font-size: 14px;line-height: 100%;text-shadow: 0 1px rgba(0, 0, 0, 0.4);color: #fff;display:inline-block;vertical-align: middle;text-align: center;cursor: pointer;font-weight: bold;transition: background 0.1s ease-in-out;-webkit-transition: background 0.1s ease-in-out;-moz-transition: background 0.1s ease-in-out;-ms-transition: background 0.1s ease-in-out;-o-transition: background 0.1s ease-in-out;text-shadow: 0 1px rgba(0, 0, 0, 0.3);color: #fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;font-family: 'Helvetica Neue', Helvetica, sans-serif;}
 .button:active {margin-bottom: 19px;}
 .button, .button:hover, .button:active {outline: 0 none;text-decoration: none;color: #fff;}
 
 .button-blue {background-color: #3fb8e8;box-shadow: 0px 3px 0px 0px #3293ba;}
 .button-blue:hover {background-color: #1baae3;}
 .button-blue:active {box-shadow: 0px 1px 0px 0px #3293ba;}
-
 
 .button-red {background-color: #f06060;box-shadow: 0px 3px 0px 0px #cd1313;}
 .button-red:hover {background-color: #ed4444;}

@@ -15,6 +15,20 @@ class CoursesController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find_by_permalink(params[:permalink])
+  end
+
+  def update
+    @course = Course.find_by_permalink(params[:permalink])
+    if @course.update_attributes(course_params)
+      flash[:success] = "Course updated successfully"
+      redirect_to courses_url
+    else
+      render 'edit'
+    end
+  end
+
   def index
   	@courses = Course.all.sort_by! { |c| c.name.downcase }
   end
@@ -24,7 +38,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    Course.find(params[:id]).destroy
+    Course.find_by_permalink(params[:permalink]).destroy
     flash[:success] = "Course successfully deleted."
     redirect_to courses_url
   end

@@ -1,0 +1,20 @@
+.academia-card {background:#F5F5F5;width:800px;height:200px;text-align:center;border:1px solid #ABABAB;display:inline-block;margin:10px auto;}
+.academia-card {
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+          border-radius: 4px;    
+  -webkit-transition: border 800ms ease-out; 
+     -moz-transition: border 800ms ease-out;
+       -o-transition: border 800ms ease-out;
+          transition: border 800ms ease-out; 
+}
+.academia-card:hover {text-decoration:none;}
+.academia-card-info-title {font-weight:bold;color:#000000;padding-top:20px;}
+.academia-card-info-description {color:#696969;width:80%;margin: 0 auto;}
+.academia-card-delete, .academia-card-update {float:right;margin-right:20px;}
+
+.new-academia-action {float:right;}
+.new-academia-action .letter-counter {padding-right:10px;}
+
+.course-card:hover {border:1px solid #00E5FF;}
+.track-card:hover {border:1px solid #FF0000;}

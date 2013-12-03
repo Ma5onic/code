@@ -46,6 +46,6 @@ module SessionsHelper
 	end
 
 	def already_signed_in_user
-			redirect_to root_url, notice: "You are already signed in" if signed_in?
-		end
+		redirect_to root_url, notice: "You are already signed in" if signed_in?
+	end
 end

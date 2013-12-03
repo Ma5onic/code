@@ -1,9 +1,14 @@
 Code::Application.routes.draw do
-  get "courses/new"
-  get "languages/new"
+  get "tracks/new"
   resources :users,  except: [:edit, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :languages
+
+  # Shallow nesting to ensure paths are not filled with unnecessary information.
+  resources :courses, except: :show, shallow: true do
+    resources :tracks do
+      resources :lessons
+    end
+  end
 
   root 'pages#home'
 
@@ -11,12 +16,16 @@ Code::Application.routes.draw do
   match '/about',     to: 'pages#about',     via: 'get'
   match '/contact',   to: 'pages#contact',   via: 'get'
   match '/dashboard', to: 'users#dashboard', via: 'get'
-  match '/courses',   to: 'courses#index',   via: 'get'
+
+  match '/courses/:permalink', to: 'courses#show', via: 'get', as: 'custom_course'
 
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
+
+  # All paths must be declared before this to ensure Rails does not think
+  # it is a username for a user (:permalink)
   match '/:permalink',      to: 'users#destroy', via: 'delete', as: 'custom_delete_user'
   get   '/:permalink',      to: 'users#show',    as: 'custom_user'
   get   '/:permalink/edit', to: 'users#edit',    as: 'custom_edit_user'

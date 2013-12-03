@@ -1,10 +1,9 @@
-class Course < ActiveRecord::Base
-	belongs_to :user
-	has_many :tracks
+class Track < ActiveRecord::Base
+	belongs_to :course
 	before_create :create_permalink
 
-	validates :description, presence: true, length: { maximum: 250 }
-	validates :name,        presence: true, length: { maximum: 50 },
+	validates :name,        presence: true, length: { maximum: 50 }
+	validates :description, presence: true, length: { maximum: 250 },
 													uniqueness: { case_sensitive: false }
 
 	def to_param

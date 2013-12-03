@@ -1,0 +1,6 @@
+<% provide(:title, 'Tracks') %>
+
+<% if current_user.admin? %>
+	<%= link_to "Create new track for #{@course.name}", new_course_track_path(@course), class: "button button-red course-card-button action-course-button" %>
+<% end %>
+<h1>Tracks</h1>

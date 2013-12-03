@@ -24,7 +24,7 @@ describe Course do
   end
 
   describe "when description is too long" do
-  	before { @course.description = "a" * 141 }
+  	before { @course.description = "a" * 201 }
   	it { should_not be_valid }
   end
 

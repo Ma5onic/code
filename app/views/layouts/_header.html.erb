@@ -1,5 +1,8 @@
 <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+  <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
+  <% else %>
   <div class="container">
+  <% end %>
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -9,6 +12,12 @@
       </button>
       <% if signed_in? %>
         <%= link_to "Code", dashboard_url, class: "navbar-brand" %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Courses", courses_path %></li>
+          <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
+          <li><%= link_to "Back to #{@course.name}: #{@track.name}", lessons_path(@track) %></li>
+          <% end %>
+        </ul>
       <% else %>
         <%= link_to "Code", root_url, class: "navbar-brand" %>
       <% end %>
@@ -19,8 +28,10 @@
           <li><%= link_to "Sign In", signin_path %></li>
           <li><%= link_to "Create an Account", signup_path %></li>
         <% else %>
-          <li><%= link_to "Courses", courses_path %></li>
-          <li><%= link_to(current_user.karma.to_s + " Karma", custom_user_path(current_user)) %></li>
+          <% if controller.controller_name != 'lessons' && controller.action_name != 'show' %>
+            <li><%= link_to "Courses", courses_path %></li>
+            <li><%= link_to(current_user.karma.to_s + " Karma", custom_user_path(current_user)) %></li>
+          <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="name-next-to-gravatar"><%= current_user.username %></span> 
@@ -49,5 +60,8 @@
         <% end %>
       </ul>
     </div>
-  </div>
+  <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
+  <% else %>
+    </div>
+  <% end %>
 </div>

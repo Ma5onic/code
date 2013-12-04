@@ -1,3 +1,11 @@
 // Place all the styles related to the Lessons controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$width-of-lessons-sidebar: 300px;
+
+.sidebar-lessons {position:absolute;top:61px;right:0;bottom:0;background:#F5F5F5;width:$width-of-lessons-sidebar;height:90.5%;overflow-y:scroll;padding-bottom:90px;}
+.sidebar-submit {position:fixed;right:0;bottom:0;width:$width-of-lessons-sidebar;height:90px;background:#eee;text-align:center;border-top:1px solid #ABABAB;}
+.sidebar-submit a {margin:20px auto;}
+#lessons-container {padding-left:20px;top:10px;right:10px;bottom:91px;}
+.lesson-task-box {margin: 20px 0;}

@@ -1,12 +1,32 @@
 <style type="text/css" media="screen">
-#editor {position: absolute;top: 200px;right: 200px;bottom: 200px;left: 200px;}
+#editor {position: absolute;top: 61px;right:300px;bottom:0;left:0;}
 </style>
 
 <div id="editor"></div>
 
+<div class="sidebar-lessons">
+	<div id="lessons-container">
+		<h2 class="lesson-header"><%= @lesson.name %></h2>
+		<p class="lesson-description"><%= @lesson.content %></p>
+		<div class="lesson-task-box">
+			<p class="lesson-task"><%= @lesson.task %></p>
+		</div>
+		<p class="lesson-hints"><%= @lesson.hints %></p>
+	</div>
+	<div class="sidebar-submit">
+		<%= link_to "Submit Code", '#', class: "button button-green" %>
+	</div>
+</div>
 
 <script>
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/monokai");
-	editor.getSession().setMode("ace/mode/javascript");
+	editor.getSession().setTabSize(2);
+	document.getElementById('editor').style.fontSize='14px';
 </script>
+
+<% if @course.permalink == 'html' %>
+	<script>editor.getSession().setMode("ace/mode/html");</script>
+<% elsif @course.permalink == 'ruby-on-rails' %>
+	<script>editor.getSession().setMode("ace/mode/ruby");</script>
+<% end %>

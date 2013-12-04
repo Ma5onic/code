@@ -1,18 +1,28 @@
 <% provide(:title, @user.username) %>
 
 <div class="user-info">
+	<% if current_user.admin? && !current_user?(@user) %>
+    <%= link_to "delete user as admin", custom_delete_user_path, method: :delete,
+                                        data: { confirm: "You sure?" },
+                                        class: "button button-red action-button-top-right" %>
+  <% end %>
+  <% if current_user?(@user) %>
+		<%= link_to "update profile", custom_edit_user_path(@user), class: "button button-blue action-button-top-right" %>
+	<% end %>
 	<div class="user-gravatar">
 		<%= gravatar_for @user, size: 180, border: true %>
 	</div>
-	<div class="user-username"><%= @user.username %></div>
-	<% if @user.name %>
-		<span class="user-name"><%= @user.name %></span>
-	<% end %>
-	<% if @user.name %>
-		<br><span class="user-location"><span class="glyphicon glyphicon-map-marker"></span> <%= @user.location %></span>
-	<% end %>
-	<% if current_user.admin? && !current_user?(@user) %>
-    <%= link_to "delete user as admin", custom_delete_user_path, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
+	<div class="user-profile-information">
+		<h1 class="user-username"><%= @user.username %></h1>
+		<% if @user.name %>
+			<span class="user-name light-gray"><%= @user.name %></span>
+		<% end %>
+		<% if @user.location %>
+			<div class="user-location"><span class="glyphicon glyphicon-map-marker"></span> <%= @user.location %></div>
+		<% end %>
+		<div class="user-karma">
+			<span class="karma-number"><%= @user.karma %></span> <span class="karma-word light-gray">Karma</span>
+		</div>
+	</div>
+
 </div>

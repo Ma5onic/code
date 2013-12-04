@@ -10,7 +10,7 @@ class LessonsController < ApplicationController
     @track = Track.find_by_permalink(params[:permalink])
     @lesson = @track.lessons.create(lesson_params)
     if @track.save
-      flash[:success] = "Track created!"
+      flash[:success] = "Lesson '#{@lesson.name}' created!"
       redirect_to courses_url
     else
       render 'new'
@@ -20,6 +20,7 @@ class LessonsController < ApplicationController
   def show
   	@lesson = Lesson.find_by_permalink(params[:permalink])
     @track = Track.find(@lesson.track_id)
+    @course = Course.find(@track.course_id)
   end
 
   def edit

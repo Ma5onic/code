@@ -17,6 +17,8 @@ class Track < ActiveRecord::Base
 
 		def create_permalink
    		link = self.name.dup
-   		self.permalink = link.gsub(' ', '-').downcase
+			replacements = [ ["\'", ""], [" ", "-"], ["!", ""] ]
+			replacements.each {|replacement| link.gsub!(replacement[0], replacement[1])}
+   		self.permalink = link.downcase
 		end
 end

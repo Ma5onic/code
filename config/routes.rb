@@ -4,7 +4,7 @@ Code::Application.routes.draw do
 
   # Shallow nesting to ensure paths (URLs) are not filled with unnecessary information.
   resources :courses, except: [:edit, :update, :destroy, :show], shallow: true do
-    resources :tracks, except: [:edit, :update, :destroy, :index, :create, :new] do
+    resources :tracks, except: [:edit, :update, :destroy, :index, :create, :new, :show] do
       resources :lessons, except: [:edit, :update, :destroy, :index, :create, :new, :show]
     end
   end
@@ -38,7 +38,7 @@ Code::Application.routes.draw do
   match '/tracks/:permalink',     to: 'tracks#update',  via: 'put'
   match '/tracks/:permalink',     to: 'tracks#update',  via: 'post'
   match '/tracks/:permalink',     to: 'tracks#update',  via: 'patch'
-  match '/tracks/:permalink',     to: 'tracks#destroy', via: 'delete'
+  match '/track/:permalink',      to: 'tracks#destroy', via: 'delete', as: 'custom_delete_track'
 
   # Lessons
   match '/tracks/:permalink/lessons/new', to: 'lessons#new',    via: 'get', as: 'new_track_lesson'

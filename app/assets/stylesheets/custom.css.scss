@@ -9,6 +9,8 @@ html {overflow-y: scroll;}
 
 /* Main Functionality */
 .action-button-top-right {float:right;}
+.light-gray {color:#ABABAB;}
+.center {text-align:center}
 
 /* Buttons */
 .button {margin: 10px 10px 20px 10px;padding: 14px 26px;font-size: 14px;line-height: 100%;text-shadow: 0 1px rgba(0, 0, 0, 0.4);color: #fff;display:inline-block;vertical-align: middle;text-align: center;cursor: pointer;font-weight: bold;transition: background 0.1s ease-in-out;-webkit-transition: background 0.1s ease-in-out;-moz-transition: background 0.1s ease-in-out;-ms-transition: background 0.1s ease-in-out;-o-transition: background 0.1s ease-in-out;text-shadow: 0 1px rgba(0, 0, 0, 0.3);color: #fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;font-family: 'Helvetica Neue', Helvetica, sans-serif;}

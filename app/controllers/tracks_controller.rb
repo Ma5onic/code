@@ -23,6 +23,7 @@ class TracksController < ApplicationController
 
   def edit
     @track = Track.find_by_permalink(params[:permalink])
+    @course = Course.find(@track.course_id)
   end
 
   def update

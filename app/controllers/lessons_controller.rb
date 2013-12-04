@@ -46,7 +46,7 @@ class LessonsController < ApplicationController
 
   def index
   	@track = Track.find_by_permalink(params[:permalink])
-  	@lessons = @track.lessons.all.sort_by! { |c| c.name.downcase }
+  	@lessons = @track.lessons.all.sort_by! { |c| c.lesson_order }
     @course = Course.find(@track.course_id)
   end
 

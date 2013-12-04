@@ -1,13 +1,12 @@
 class Lesson < ActiveRecord::Base
 	belongs_to :track
-	after_validation :create_permalink
-	before_create :append_order
+	before_validation :create_permalink
 
 	validates :name,         presence: true, length: { maximum: 50 },
 													 uniqueness: { case_sensitive: false }
 	validates :content,      presence: true
 	validates :instructions, presence: true
-	validates :order,        presence: true, uniqueness: true
+	validates :lesson_order, presence: true, uniqueness: true
 	validates :permalink,    length: { maximum: 50 },
 													 uniqueness: { case_sensitive: false }
 
@@ -20,11 +19,8 @@ class Lesson < ActiveRecord::Base
 		def create_permalink
 			link = self.name.dup
 			replacements = [ ["\'", ""], [" ", "-"], ["!", ""], ["?", ""] ]
-			replacements.each {|replacement| link.gsub!(replacement[0], replacement[1])}
+			replacements.each { |replacement| link.gsub!(replacement[0], replacement[1]) }
 			self.permalink = link.downcase
-		end
-
-		def append_order
-			self.order = self.order.to_s + '-' + self.permalink
+			self.lesson_order = self.order.to_s + '-' + self.track.permalink
 		end
 end

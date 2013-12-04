@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
+			if @user.id == 1
+				@user.toggle!(:admin)
+			end
 			sign_in @user
 			flash[:success] = "Welcome to Code!"
 			redirect_to custom_user_path @user

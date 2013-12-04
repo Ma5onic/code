@@ -21,6 +21,7 @@ class LessonsController < ApplicationController
   	@lesson = Lesson.find_by_permalink(params[:permalink])
     @track = Track.find(@lesson.track_id)
     @course = Course.find(@track.course_id)
+    @creator = User.find(@course.user_id)
   end
 
   def edit

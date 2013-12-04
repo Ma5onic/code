@@ -56,9 +56,9 @@ Code::Application.routes.draw do
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
-  match '/users/:permalink', to: 'users#update', via: 'put', as: 'user'
-  match '/users/:permalink', to: 'users#update', via: 'patch'
-  match '/users/:permalink', to: 'users#update', via: 'post'
+  match '/:permalink', to: 'users#update', via: 'put', as: 'user'
+  match '/:permalink', to: 'users#update', via: 'patch'
+  match '/:permalink', to: 'users#update', via: 'post'
 
   # All paths must be declared before this to ensure Rails does not think
   # it is a username for a user (:permalink)

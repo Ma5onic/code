@@ -9,16 +9,18 @@
 		<h2 class="lesson-header"><%= @lesson.name %></h2>
 		<p class="lesson-description"><%= simple_format(@lesson.content) %></p>
 	</div>
-		<div class="lesson-task-box">
-			<h3 class="center">Task</h3>
-			<p class="lesson-task"><%= simple_format(@lesson.instructions) %></p>
+	<div class="lesson-task-box">
+		<h3 class="center">Task</h3>
+		<p class="lesson-task"><%= simple_format(@lesson.instructions) %></p>
+	</div>
+	<div class="lessons-container">
+		<div class="lesson-hints-expand">Hints:</div>
+		<div class="lesson-hints">
+			<%= simple_format(@lesson.hints) %>
 		</div>
-		<div class="lessons-container">
-			<div class="lesson-hints-expand">Hints:</div>
-			<div class="lesson-hints">
-				<%= simple_format(@lesson.hints) %>
-			</div>
-		</div>
+	</div>
+	<div class="lessons-container">
+		Created by: <%= gravatar_for @creator, size: 52, circle: true %> <% if @creator.name %><%= @creator.name %><% else %><%= @creator.username %><% end %>
 	</div>
 	<div class="sidebar-submit">
 		<%= link_to "Submit Code", '#', class: "button button-green", id: "submit-code" %>

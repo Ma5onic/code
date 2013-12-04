@@ -10,11 +10,13 @@
 	<div class="academia-card course-card">
 		<div class="academia-card-logo"></div>
 		<div class="academia-card-info">
-			<%= link_to "delete", custom_course_path(course), method: :delete, 
-																												data: { confirm: "You sure?" },
-                                                        title: course.name, 
-                                                        class: "academia-card-delete" %>
-      <%= link_to "edit", course_edit_path(course), class: "academia-card-update" %>
+			<% if current_user.admin? %>
+				<%= link_to "delete", custom_course_path(course), method: :delete, 
+																													data: { confirm: "You sure?" },
+	                                                        title: course.name, 
+	                                                        class: "academia-card-delete" %>
+	      <%= link_to "edit", course_edit_path(course), class: "academia-card-update" %>
+      <% end %>
 			<h2 class="academia-card-info-title"><%= course.name %></h2>
 			<div class="academia-card-info-description"><%= course.description %></div>
 			<%= link_to "View course", tracks_path(course), class: "button button-blue" %>

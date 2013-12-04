@@ -5,16 +5,23 @@
 <div id="editor"></div>
 
 <div class="sidebar-lessons">
-	<div id="lessons-container">
+	<div class="lessons-container">
 		<h2 class="lesson-header"><%= @lesson.name %></h2>
-		<p class="lesson-description"><%= @lesson.content %></p>
+		<p class="lesson-description"><%= simple_format(@lesson.content) %></p>
+	</div>
 		<div class="lesson-task-box">
-			<p class="lesson-task"><%= @lesson.task %></p>
+			<h3 class="center">Task</h3>
+			<p class="lesson-task"><%= simple_format(@lesson.instructions) %></p>
 		</div>
-		<p class="lesson-hints"><%= @lesson.hints %></p>
+		<div class="lessons-container">
+			<div class="lesson-hints-expand">Hints:</div>
+			<div class="lesson-hints">
+				<%= simple_format(@lesson.hints) %>
+			</div>
+		</div>
 	</div>
 	<div class="sidebar-submit">
-		<%= link_to "Submit Code", '#', class: "button button-green" %>
+		<%= link_to "Submit Code", '#', class: "button button-green", id: "submit-code" %>
 	</div>
 </div>
 
@@ -23,6 +30,16 @@
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setTabSize(2);
 	document.getElementById('editor').style.fontSize='14px';
+	editor.commands.addCommand({
+    name: 'crtl-s',
+    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+    exec: function(editor) {
+    		if (confirm("Do you want to submit this code?")) {
+    			document.getElementById('submit-code').click();
+    		}
+    },
+    readOnly: true
+	});
 </script>
 
 <% if @course.permalink == 'html' %>

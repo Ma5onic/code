@@ -4,8 +4,8 @@
 
 $font-family-sans-serif: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 @import "bootstrap";
-body {font-family: 'Open Sans', 'Helvetica-Neue', Helvetica, Arial, sans-serif;margin-top:80px;}
-html {overflow-y: scroll;}
+body {font-family: 'Open Sans', 'Helvetica-Neue', Helvetica, Arial, sans-serif;}
+@media (min-width: 1200px) {.container{width: 960px;}}
 
 /* Main Functionality */
 .action-button-top-right {float:right;}

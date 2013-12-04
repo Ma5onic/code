@@ -13,8 +13,8 @@
       <% if signed_in? %>
         <%= link_to "Code", dashboard_url, class: "navbar-brand" %>
         <ul class="nav navbar-nav">
-          <li><%= link_to "Courses", courses_path %></li>
           <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
+          <li><%= link_to "Courses", courses_path %></li>
           <li><%= link_to "Back to #{@course.name}: #{@track.name}", lessons_path(@track) %></li>
           <% end %>
         </ul>
@@ -28,7 +28,10 @@
           <li><%= link_to "Sign In", signin_path %></li>
           <li><%= link_to "Create an Account", signup_path %></li>
         <% else %>
-          <% if controller.controller_name != 'lessons' && controller.action_name != 'show' %>
+          <% if controller.controller_name == 'lessons' %>
+            <% if controller.action_name == 'show' %>
+            <% end %>
+          <% else %>
             <li><%= link_to "Courses", courses_path %></li>
             <li><%= link_to(current_user.karma.to_s + " Karma", custom_user_path(current_user)) %></li>
           <% end %>

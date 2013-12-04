@@ -30,9 +30,9 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find_by_permalink(params[:permalink])
     @track = Track.find(@lesson.track_id)
-    if @track.update_attributes(lesson_params)
+    if @lesson.update_attributes(lesson_params)
       flash[:success] = "Lesson updated successfully"
-      redirect_to tracks_path @course
+      redirect_to lessons_path @track
     else
       render 'edit'
     end
@@ -57,6 +57,6 @@ class LessonsController < ApplicationController
 		end
 
     def lesson_params
-      params.require(:lesson).permit(:name, :content, :permalink)
+      params.require(:lesson).permit(:name, :content, :instructions, :hints, :order, :permalink)
     end
 end

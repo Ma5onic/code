@@ -10,7 +10,7 @@
 <div class="courses-container">
 	<ul class="lessons-list">
 		<% @lessons.each do |lesson| %>
-			<li><%= link_to lesson.name, custom_lesson_path(lesson) %></li>
+			<li><%= link_to lesson.name, lesson_path(lesson) %></li>
 		<% end %>
 	</ul>
 </div>

@@ -12,13 +12,13 @@ class Track < ActiveRecord::Base
 	def to_param
 		permalink
 	end
-	
+
 	private
 
 		def create_permalink
-   		link = self.name.dup
+			link = self.name.dup
 			replacements = [ ["\'", ""], [" ", "-"], ["!", ""] ]
 			replacements.each {|replacement| link.gsub!(replacement[0], replacement[1])}
-   		self.permalink = link.downcase
+			self.permalink = link.downcase
 		end
 end

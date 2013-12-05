@@ -21,5 +21,6 @@ module Code
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif index.js *.js)
+    config.assets.precompile += ['ace/*']
   end
 end

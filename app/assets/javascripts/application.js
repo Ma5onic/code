@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require_tree .
 //= require ace/ace
+//= require ace/theme-monokai

@@ -3,6 +3,7 @@ namespace :db do
   task populate: :environment do
     make_admin
     make_course_creator
+    make_user
   end
 end
 
@@ -14,8 +15,12 @@ def make_admin
 end
 
 def make_course_creator
-  course_creator = User.create!(name: "", email: "test@example.com",
-                                username: "creator", password: "password",
-                                password_confirmation: "password", admin: false,
-                                location: "UK", course_creator: true)
+  course_creator = User.create!(username: "creator", email: "test@example.com",
+                                password: "password", password_confirmation: "password", 
+                                admin: false, location: "UK", course_creator: true)
+end
+
+def make_user
+  user = User.create!(username: 'user', email: 'user@example.com', password: 'password'
+                      password_confirmation: 'password')
 end

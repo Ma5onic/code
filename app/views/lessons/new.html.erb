@@ -31,10 +31,10 @@
 			</div>
 
 			<div class="input-group">
-				<%= f.text_area :starting_content, class: "form-control", placeholder: "The code you want to display at the start of the lesson", rows: "6", name: 'lesson_code' %>
+				<%= f.text_area :starting_content, class: "form-control", placeholder: "The code you want to display at the start of the lesson", rows: "6" %>
 			</div>
 
-
+			<label>Code you want user to see at start of lesson</label>
 			<div class="input-group">
 				<div id="editor"></div>
 			</div>
@@ -62,7 +62,7 @@
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setTabSize(2);
-	var textarea = $('textarea[name="lesson_code"]').hide();
+	var textarea = $('#lesson_starting_content').hide();
 	editor.getSession().on('change', function(){
 	  textarea.val(editor.getSession().getValue());
 	});

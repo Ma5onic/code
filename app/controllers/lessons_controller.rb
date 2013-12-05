@@ -13,7 +13,7 @@ class LessonsController < ApplicationController
     @lesson = @track.lessons.create(lesson_params)
     if @track.save
       flash[:success] = "Lesson '#{@lesson.name}' created!"
-      redirect_to courses_url
+      redirect_to lessons_path @track
     else
       render 'new'
     end

@@ -4,7 +4,7 @@ class TracksController < ApplicationController
   
   def new
   	@track = Track.new
-    @course = Course.find(@track.course_id)
+    @course = Course.find_by_permalink(params[:permalink])
   end
 
   def create
@@ -12,7 +12,7 @@ class TracksController < ApplicationController
     @track = @course.tracks.create(track_params)
     if @track.save
       flash[:success] = "Track created!"
-      redirect_to courses_url
+      redirect_to tracks_path @course
     else
       render 'new'
     end

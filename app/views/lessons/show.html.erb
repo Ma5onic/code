@@ -4,7 +4,7 @@
 #editor {position: absolute;top: 61px;right:300px;bottom:0;left:0;}
 </style>
 
-<div id="editor"><%= simple_format(@lesson.starting_content) %></div>
+<div id="editor"><%= @lesson.starting_content %></div>
 
 <div class="sidebar-lessons">
 	<div class="lessons-container">
@@ -17,7 +17,7 @@
 	</div>
 	<div class="lessons-container">
 		<div class="lesson-hints-expand">Hints:</div>
-		<div class="lesson-hints">
+		<div class="lesson-hints-content">
 			<%= simple_format(@lesson.hints) %>
 		</div>
 	</div>
@@ -27,6 +27,9 @@
 	<div class="edit-lesson-show">
 		<% if current_user.admin? || current_user.course_creator? %>
 			<%= link_to "edit lesson", edit_lesson_path(@lesson), class: "button button-red" %>
+		<% end %>
+		<% if current_user.admin? %>
+			<%= link_to "delete lesson", delete_lesson_path(@lesson), class: "button button-red" %>
 		<% end %>
 	</div>
 	<div class="sidebar-submit">

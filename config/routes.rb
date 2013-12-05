@@ -37,11 +37,11 @@ Code::Application.routes.draw do
   match '/track/:permalink',      to: 'tracks#update',  via: 'patch'
 
   # Lessons
-  match '/tracks/:permalink/lesson/new', to: 'lessons#new',    via: 'get', as: 'new_track_lesson'
-  match '/tracks/:permalink/lessons',    to: 'lessons#index',  via: 'get', as: 'lessons'
-  match '/tracks/:permalink/lesson',     to: 'lessons#create', via: 'post'
-  match '/tracks/:permalink/lesson',     to: 'lessons#create', via: 'put'
-  match '/tracks/:permalink/lesson',     to: 'lessons#create', via: 'patch'
+  match '/track/:permalink/lesson/new', to: 'lessons#new',    via: 'get', as: 'new_track_lesson'
+  match '/track/:permalink/lessons',   to: 'lessons#index',  via: 'get', as: 'lessons'
+  match '/track/:permalink/lessons',   to: 'lessons#create', via: 'post'
+  match '/track/:permalink/lessons',   to: 'lessons#create', via: 'put'
+  match '/track/:permalink/lessons',   to: 'lessons#create', via: 'patch'
 
   # Short Lesson Permalinks
   match '/lesson/:permalink',      to: 'lessons#show',    via: 'get',    as: 'lesson'

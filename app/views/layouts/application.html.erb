@@ -2,8 +2,8 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "ace", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
   <%= render 'layouts/fonts' %>
@@ -13,11 +13,19 @@
 <%= render 'layouts/header' %>
 
 <div class="container body">
+
 	<% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
+
 	<%= yield %>
-	<%= debug(params) if Rails.env.development? && ((controller.controller_name != "lessons") && (controller.action_name != "show")) %>
+
+  <% if Rails.env.development? %>
+    <% if controller.controller_name == "lessons" && controller.action_name == "show" %>
+    <% else %>
+      <%= debug(params) %>
+    <% end %>
+  <% end %>
 </div>
 
 <%= render 'layouts/footer' %>

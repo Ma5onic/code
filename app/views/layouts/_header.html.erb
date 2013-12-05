@@ -1,8 +1,62 @@
+<% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
 <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
-  <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
-  <% else %>
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <% if signed_in? %>
+      <%= link_to "Code", dashboard_url, class: "navbar-brand" %>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Courses", courses_path %></li>
+        <li><%= link_to "Back to #{@course.name}: #{@track.name}", lessons_path(@track) %></li>
+      </ul>
+    <% else %>
+      <%= link_to "Code", root_url, class: "navbar-brand" %>
+    <% end %>
+  </div>
+  <div class="collapse navbar-collapse navbar-right">
+    <ul class="nav navbar-nav">
+      <% unless signed_in? %>
+        <li><%= link_to "Sign In", signin_path %></li>
+        <li><%= link_to "Create an Account", signup_path %></li>
+      <% else %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="name-next-to-gravatar"><%= current_user.username %></span> 
+            <span class="header-gravatar"><%= gravatar_for current_user, size: 30, circle: true %></span> 
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="<%= custom_user_path(current_user) %>">
+                <span class="glyphicon glyphicon-comment"></span> My Profile
+              </a>
+            </li>
+            <li>
+              <a href="<%= custom_edit_user_path(current_user) %>">
+                <span class="glyphicon glyphicon-cog"></span> Settings
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="<%= signout_path %>" data-method="delete" rel="nofollow">
+                <span class="glyphicon glyphicon-remove"></span> Sign Out
+              </a>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<% else %>
+
+<div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
   <div class="container">
-  <% end %>
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -28,13 +82,8 @@
           <li><%= link_to "Sign In", signin_path %></li>
           <li><%= link_to "Create an Account", signup_path %></li>
         <% else %>
-          <% if controller.controller_name == 'lessons' %>
-            <% if controller.action_name == 'show' %>
-            <% end %>
-          <% else %>
-            <li><%= link_to "Courses", courses_path %></li>
-            <li><%= link_to(current_user.karma.to_s + " Karma", custom_user_path(current_user)) %></li>
-          <% end %>
+          <li><%= link_to "Courses", courses_path %></li>
+          <li><%= link_to(current_user.karma.to_s + " Karma", custom_user_path(current_user)) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="name-next-to-gravatar"><%= current_user.username %></span> 
@@ -63,8 +112,7 @@
         <% end %>
       </ul>
     </div>
-  <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
-  <% else %>
-    </div>
-  <% end %>
+  </div>
 </div>
+
+<% end %>

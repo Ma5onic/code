@@ -1,2 +1,2 @@
 //= require ace/ace
-//= require ace/theme-monokai
+//= require_tree .

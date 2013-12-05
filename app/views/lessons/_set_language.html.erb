@@ -1,0 +1,19 @@
+<% if @course.permalink == 'html' %>
+	<script>editor.getSession().setMode("ace/mode/html");</script>
+<% elsif @course.permalink == 'ruby-on-rails' %>
+	<script>editor.getSession().setMode("ace/mode/ruby");</script>
+<% elsif @course.permalink == 'python' %>
+	<script>editor.getSession().setMode("ace/mode/python");</script>
+<% elsif @course.permalink == 'javascript' %>
+	<script>editor.getSession().setMode("ace/mode/javascript");</script>
+<% elsif @course.permalink == 'php' %>
+	<script>editor.getSession().setMode("ace/mode/php");</script>
+<% elsif @course.permalink == 'css' %>
+	<script>editor.getSession().setMode("ace/mode/css");</script>
+<% elsif @course.permalink == 'c#' %>
+	<script>editor.getSession().setMode("ace/mode/c#");</script>
+<% elsif @course.permalink == 'java' %>
+	<script>editor.getSession().setMode("ace/mode/java");</script>
+<% elsif @course.permalink == 'markdown' %>
+	<script>editor.getSession().setMode("ace/mode/markdown");</script>
+<% end %>

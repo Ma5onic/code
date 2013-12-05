@@ -26,6 +26,18 @@ class User < ActiveRecord::Base
 		Digest::SHA1.hexdigest(token.to_s)
 	end
 
+	def complete!(lesson)
+    progresses.create!(lesson_id: lesson.id)
+  end
+
+  def completed?(lesson)
+    progresses.find_by(lesson_id: lesson.id)
+  end
+
+  def uncomplete!(lesson)
+    progresses.find_by(lesson_id: lesson.id).destroy!
+  end
+
 	def to_param
 		permalink
 	end

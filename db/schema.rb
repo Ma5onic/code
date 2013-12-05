@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204225516) do
+ActiveRecord::Schema.define(version: 20131205174551) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -33,7 +33,20 @@ ActiveRecord::Schema.define(version: 20131204225516) do
     t.datetime "updated_at"
     t.string   "lesson_order"
     t.integer  "order"
+    t.text     "starting_content"
   end
+
+  create_table "progresses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "progresses", ["lesson_id"], name: "index_progresses_on_lesson_id"
+  add_index "progresses", ["user_id", "lesson_id"], name: "index_progresses_on_user_id_and_lesson_id", unique: true
+  add_index "progresses", ["user_id"], name: "index_progresses_on_user_id"
 
   create_table "tracks", force: true do |t|
     t.string   "name"
@@ -56,6 +69,7 @@ ActiveRecord::Schema.define(version: 20131204225516) do
     t.integer  "karma",           default: 0
     t.string   "permalink"
     t.boolean  "admin",           default: false
+    t.boolean  "course_creator",  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -3,7 +3,7 @@
 <%= link_to "Back to Tracks", tracks_path(@course), class: "button button-green action-button-top-right" %>
 <div class="panel panel-default signup-panel">
 	<div class="panel-heading">
-		<h2 class="panel-title">Update <%= @track.name %></h3>
+		<h2 class="panel-title">Update Track: <%= @track.name %></h3>
 	</div>
 	<div class="panel-body">
 		<%= form_for(@track) do |f| %>

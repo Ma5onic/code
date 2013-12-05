@@ -1,4 +1,8 @@
-<% provide(:title, 'New Course') %>
+<% provide(:title, 'Edit Lesson: ' + @lesson.name) %>
+
+<style type="text/css" media="screen">
+#editor {position: relative;height:200px;width:370px;}
+</style>
 
 <div class="panel panel-default signup-panel">
 	<div class="panel-heading">
@@ -8,36 +12,63 @@
 		<%= form_for(@lesson) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
+			<%= f.label :name %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
 				<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
 			</div>
 
+			<%= f.label :order, 'Order of Lesson in Track' %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
 				<%= f.text_field :order, class: "form-control", placeholder: "Order of Lessons" %>
 			</div>
 
+			<%= f.label :content, 'Pre-Task Description' %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
-				<%= f.text_area :content, class: "form-control", placeholder: "An explanation before the task should go here", rows: "6"%>
+				<%= f.text_area :content, class: "form-control", placeholder: "An explanation before the task should go here", rows: "6" %>
+			</div>
+
+			<div class="input-group">
+				<%= f.text_area :starting_content, class: "form-control", placeholder: "The code you want to display at the start of the lesson", rows: "6", name: 'lesson_code' %>
+			</div>
+
+			<label>Code you want user to see at start of lesson</label>
+			<div class="input-group">
+				<div id="editor"></div>
 			</div>
 			
+			<%= f.label :instructions %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
 				<%= f.text_area :instructions, class: "form-control", placeholder: "Tell the user what you want them to do", rows: "6"%>
 			</div>
 
+			<%= f.label :hints %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-bullhorn"></span></span>
 				<%= f.text_area :hints, class: "form-control", placeholder: "Any hints you want to offer should go here", rows: "6"%>
 			</div>
 
 			<div class="new-academia-action">
-				<%= f.submit "Create Lesson", class: "btn btn-large btn-primary" %>
+				<%= f.submit "Update Lesson", class: "btn btn-large btn-primary" %>
 			</div>
 		<% end %>
 	</div>
 	<div class="panel-footer">
 	</div>
 </div>
+
+<script>
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/monokai");
+	editor.getSession().setTabSize(2);
+	var textarea = $('textarea[name="lesson_code"]').hide();
+	editor.getSession().setValue(textarea.val());
+	editor.getSession().on('change', function(){
+	  textarea.val(editor.getSession().getValue());
+	});
+</script>
+
+<%= render 'lessons/set_language' %>

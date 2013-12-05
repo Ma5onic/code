@@ -29,24 +29,24 @@ Code::Application.routes.draw do
   match '/courses/:permalink/tracks',     to: 'tracks#create', via: 'post'
 
   # Short Tracks Permalinks
-  match '/track/:permalink',      to: 'tracks#show',    via: 'get',    as: 'custom_track'
+  match '/track/:permalink',      to: 'tracks#show',    via: 'get',    as: 'track'
   match '/track/:permalink/edit', to: 'tracks#edit',    via: 'get',    as: 'edit_track'
   match '/track/:permalink',      to: 'tracks#destroy', via: 'delete', as: 'custom_delete_track'
-  match '/tracks/:permalink',     to: 'tracks#update',  via: 'put'
-  match '/tracks/:permalink',     to: 'tracks#update',  via: 'post'
-  match '/tracks/:permalink',     to: 'tracks#update',  via: 'patch'
+  match '/track/:permalink',      to: 'tracks#update',  via: 'put'
+  match '/track/:permalink',      to: 'tracks#update',  via: 'post'
+  match '/track/:permalink',      to: 'tracks#update',  via: 'patch'
 
   # Lessons
-  match '/tracks/:permalink/lesson/new', to: 'lessons#new',     via: 'get', as: 'new_track_lesson'
-  match '/tracks/:permalink/lessons',     to: 'lessons#index',  via: 'get', as: 'lessons'
-  match '/tracks/:permalink/lessons',      to: 'lessons#create', via: 'post'
-  match '/tracks/:permalink/lessons',      to: 'lessons#create', via: 'put'
-  match '/tracks/:permalink/lessons',      to: 'lessons#create', via: 'patch'
+  match '/tracks/:permalink/lesson/new', to: 'lessons#new',    via: 'get', as: 'new_track_lesson'
+  match '/tracks/:permalink/lessons',    to: 'lessons#index',  via: 'get', as: 'lessons'
+  match '/tracks/:permalink/lesson',     to: 'lessons#create', via: 'post'
+  match '/tracks/:permalink/lesson',     to: 'lessons#create', via: 'put'
+  match '/tracks/:permalink/lesson',     to: 'lessons#create', via: 'patch'
 
   # Short Lesson Permalinks
   match '/lesson/:permalink',      to: 'lessons#show',    via: 'get',    as: 'lesson'
   match '/lesson/:permalink/edit', to: 'lessons#edit',    via: 'get',    as: 'edit_lesson'
-  match '/lessons/:permalink',     to: 'lessons#destroy', via: 'delete', as: 'delete_lesson'
+  match '/lesson/:permalink',      to: 'lessons#destroy', via: 'delete', as: 'delete_lesson'
   match '/lesson/:permalink',      to: 'lessons#update',  via: 'post'
   match '/lesson/:permalink',      to: 'lessons#update',  via: 'put'
   match '/lesson/:permalink',      to: 'lessons#update',  via: 'patch'

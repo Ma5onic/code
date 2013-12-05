@@ -1,9 +1,11 @@
 class LessonsController < ApplicationController
-	before_action :admin_user, only: [:new, :create, :destroy]
+	before_action :authorized_user, only: [:new, :create, :edit, :update]
+  before_action :admin_user,      only: :destroy
   
   def new
-    @track = Track.find_by_permalink(params[:permalink])
   	@lesson = Lesson.new
+    @track = Track.find_by_permalink(params[:permalink])
+    @course = Course.find(@track.course_id)
   end
 
   def create
@@ -26,6 +28,8 @@ class LessonsController < ApplicationController
 
   def edit
     @lesson = Lesson.find_by_permalink(params[:permalink])
+    @track = Track.find(@lesson.track_id)
+    @course = Course.find(@track.course_id)
   end
 
   def update
@@ -33,7 +37,7 @@ class LessonsController < ApplicationController
     @track = Track.find(@lesson.track_id)
     if @lesson.update_attributes(lesson_params)
       flash[:success] = "Lesson updated successfully"
-      redirect_to lessons_path @track
+      redirect_to lesson_path @lesson
     else
       render 'edit'
     end
@@ -53,11 +57,19 @@ class LessonsController < ApplicationController
 
   private
 
-  	def admin_user
-			redirect_to courses_url, notice: "You do not have the correct privileges to access this page" unless current_user.admin?
-		end
+  	def authorized_user
+      if current_user.admin? || current_user.course_creator?
+      else
+       redirect_to courses_url, notice: "You do not have the correct privileges to access this page"
+      end
+    end
+
+    def admin_user
+      redirect_to courses_url, notice: "You do not have the correct privileges to access this page" unless current_user.admin?
+    end
 
     def lesson_params
-      params.require(:lesson).permit(:name, :content, :instructions, :hints, :order, :permalink)
+      params.require(:lesson).permit(:name, :content, :starting_content, 
+                                     :instructions, :hints, :order, :permalink)
     end
 end

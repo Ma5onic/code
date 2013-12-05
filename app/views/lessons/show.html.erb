@@ -1,8 +1,10 @@
+<% provide(:title, @lesson.name) %>
+
 <style type="text/css" media="screen">
 #editor {position: absolute;top: 61px;right:300px;bottom:0;left:0;}
 </style>
 
-<div id="editor"></div>
+<div id="editor"><%= simple_format(@lesson.starting_content) %></div>
 
 <div class="sidebar-lessons">
 	<div class="lessons-container">
@@ -21,6 +23,11 @@
 	</div>
 	<div class="lessons-container">
 		Created by: <%= gravatar_for @creator, size: 52, circle: true %> <% if @creator.name %><%= @creator.name %><% else %><%= @creator.username %><% end %>
+	</div>
+	<div class="edit-lesson-show">
+		<% if current_user.admin? || current_user.course_creator? %>
+			<%= link_to "edit lesson", edit_lesson_path(@lesson), class: "button button-red" %>
+		<% end %>
 	</div>
 	<div class="sidebar-submit">
 		<%= link_to "Submit Code", '#', class: "button button-green", id: "submit-code" %>
@@ -44,8 +51,4 @@
 	});
 </script>
 
-<% if @course.permalink == 'html' %>
-	<script>editor.getSession().setMode("ace/mode/html");</script>
-<% elsif @course.permalink == 'ruby-on-rails' %>
-	<script>editor.getSession().setMode("ace/mode/ruby");</script>
-<% end %>
+<%= render 'lessons/set_language' %>

@@ -8,22 +8,25 @@
 		<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
+			<%= f.label :username %>
 			<div class="input-group">
 				<span class="input-group-addon">@</span>
 				<%= f.text_field :username, class: "form-control Username", placeholder: "Username" %>
 			</div>
 
+			<%= f.label :email %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
 				<%= f.text_field :email, class: "form-control", placeholder: "Email" %>
 			</div>
 
+			<%= f.label :password %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 				<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
 			</div>
 
-
+			<%= f.label :password_confirmation, 'Confirm Password' %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 				<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirmation" %>

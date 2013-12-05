@@ -17,3 +17,4 @@
 //= require_tree .
 //= require ace/ace
 //= require ace/theme-monokai
+//= require ace .

@@ -17,4 +17,6 @@
 //= require_tree .
 //= require ace/ace
 //= require ace/theme-monokai
-//= require ace .
+//= require ace/mode-html
+//= require ace/mode-ruby
+//= require ace/mode-python

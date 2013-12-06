@@ -18,7 +18,7 @@
 				<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
 			</div>
 
-			<%= f.label :order %>
+			<%= f.label :order, 'Order of Lesson in Track' %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
 				<%= f.text_field :order, class: "form-control", placeholder: "Order" %>
@@ -51,6 +51,10 @@
 				<%= f.text_area :hints, class: "form-control", placeholder: "Any hints you want to offer should go here", rows: "6" %>
 			</div>
 
+			<div class="input-group">
+				<%= f.hidden_field :user_id, value: current_user.id  %>
+			</div>
+
 			<div class="new-academia-action">
 				<%= f.submit "Create Lesson", class: "btn btn-large btn-primary" %>
 			</div>
@@ -60,9 +64,10 @@
 
 <script>
 	var editor = ace.edit("editor");
-	editor.setTheme("ace/theme/monokai");
+	editor.setTheme("ace/theme/vibrant_ink");
 	editor.getSession().setTabSize(2);
 	var textarea = $('#lesson_starting_content').hide();
+	editor.getSession().setValue(textarea.val());
 	editor.getSession().on('change', function(){
 	  textarea.val(editor.getSession().getValue());
 	});

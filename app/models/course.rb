@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
 	belongs_to :user
 	has_many :tracks
+	
 	before_create :create_permalink
 
 	validates :description, presence: true, length: { maximum: 250 }

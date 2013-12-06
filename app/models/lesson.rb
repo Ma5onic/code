@@ -1,5 +1,6 @@
 class Lesson < ActiveRecord::Base
 	belongs_to :track
+
 	before_validation :create_permalink
 
 	validates :name,         presence: true, length: { maximum: 50 },

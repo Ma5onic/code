@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+//= require ace/ace
+//= require ace/theme-monokai
+//= require ace/theme-vibrant_ink
+//= require ace/mode-html
+//= require ace/mode-ruby
+//= require ace/mode-python

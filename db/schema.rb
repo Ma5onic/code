@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131206190150) do
+ActiveRecord::Schema.define(version: 20131206210602) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20131206190150) do
     t.string   "name"
     t.string   "location"
     t.string   "remember_token"
-    t.integer  "karma",           default: 0
+    t.integer  "points",          default: 0
     t.string   "permalink"
     t.boolean  "admin",           default: false
     t.boolean  "course_creator",  default: false

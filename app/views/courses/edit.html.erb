@@ -1,5 +1,6 @@
 <% provide(:title, 'Edit Course ' + @course.name) %>
 
+<%= link_to "Back to Courses", courses_path, class: "button button-red action-button-top-right" %>
 <div class="panel panel-default signup-panel">
 	<div class="panel-heading">
 		<h2 class="panel-title">Update <%= @course.name %></h3>

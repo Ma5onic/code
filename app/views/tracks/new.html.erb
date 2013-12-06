@@ -1,5 +1,6 @@
 <% provide(:title, 'New Track') %>
 
+<%= link_to "Back to Tracks", tracks_path(@course), class: "button button-red action-button-top-right" %>
 <div class="panel panel-default signup-panel">
 	<div class="panel-heading">
 		<h2 class="panel-title">Add New Track to '<%= @course.name %>'</h3>

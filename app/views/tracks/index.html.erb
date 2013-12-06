@@ -3,7 +3,7 @@
 <% if current_user.admin? || current_user.course_creator? %>
 	<%= link_to "Create new track for #{@course.name}", new_course_track_path(@course), class: "button button-red action-button-top-right" %>
 <% end %>
-<%= link_to "Back to courses", courses_path, class: "button button-green action-button-top-right" %>
+<%= link_to "Back to courses", courses_path, class: "button button-red action-button-top-right" %>
 <h1><%= @course.name %></h1>
 
 
@@ -23,7 +23,7 @@
 	    <% end %>
 			<h2 class="academia-card-info-title"><%= track.name %></h2>
 			<div class="academia-card-info-description"><%= track.description %></div>
-			<%= link_to "View track", lessons_path(track), class: "button button-green" %>
+			<%= link_to "View track", lessons_path(track), class: "button button-red" %>
 		</div>
 	</div>
 <% end %>

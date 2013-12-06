@@ -1,6 +1,6 @@
 <% if @course.permalink == 'html' %>
 editor.getSession().setMode("ace/mode/html");
-<% elsif @course.permalink == 'ruby-on-rails' %>
+<% elsif @course.permalink == 'ruby-on-rails' || @course.permalink == 'ruby' %>
 editor.getSession().setMode("ace/mode/ruby");
 <% elsif @course.permalink == 'python' %>
 editor.getSession().setMode("ace/mode/python");

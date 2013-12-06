@@ -20,9 +20,19 @@
 		<% if @user.location %>
 			<div class="user-location"><span class="glyphicon glyphicon-map-marker"></span> <%= @user.location %></div>
 		<% end %>
-		<div class="user-karma">
-			<span class="karma-number"><%= @user.points %></span> <span class="karma-word light-gray">Points</span>
+		<div class="user-points">
+			<span class="points-number"><%= @user.points %></span> <span class="points-word light-gray">Points</span>
 		</div>
 	</div>
 
 </div>
+
+<div class="user-lessons">
+<% if @user.lessons.any? %>
+<h3>Lessons Created</h3>
+<ul>
+<% @user.lessons.all.each do |lesson| %>
+	<li><%= link_to lesson.name, lesson_path(lesson) %></li>
+<% end %>
+</ul>
+<% end %>

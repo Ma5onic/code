@@ -10,7 +10,18 @@
 <div class="courses-container">
 	<ul class="list-group">
 		<% @lessons.each do |lesson| %>
-			<li class="list-group-item"><%= link_to lesson.name, lesson_path(lesson) %> <%= link_to "edit", edit_lesson_path(lesson), class: "new-academia-action" %></li>
+			<li class="list-group-item"><%= link_to lesson.name, lesson_path(lesson) %> 
+				<% if current_user.admin? || current_user?(lesson.user_id) %>
+					<%= link_to " delete", delete_lesson_path(lesson), 
+			                                 method: :delete, 
+																	     data: { confirm: "You sure?" },
+	                                     title: lesson.name,
+	                                     class: "new-academia-action" %>
+				<% end %>
+				<% if current_user.admin? || current_user.course_creator? %>
+					<%= link_to "edit", edit_lesson_path(lesson), class: "new-academia-action lessons-action" %>
+				<% end %>
+			</li>
 		<% end %>
 	</ul>
 </div>

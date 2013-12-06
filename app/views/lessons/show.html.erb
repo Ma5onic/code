@@ -35,7 +35,11 @@
 			<%= link_to "edit lesson", edit_lesson_path(@lesson), class: "button button-red" %>
 		<% end %>
 		<% if current_user.admin? || current_user?(@lesson.user_id) %>
-			<%= link_to "delete lesson", delete_lesson_path(@lesson), class: "button button-red" %>
+			<%= link_to "delete lesson", delete_lesson_path(@lesson), 
+			                             method: :delete, 
+																	 data: { confirm: "You sure?" },
+	                                 title: @lesson.name,
+	                                 class: "button button-red" %>
 		<% end %>
 	</div>
 	<div class="sidebar-submit">

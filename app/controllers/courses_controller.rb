@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
-	before_action :authorized_user, only: [:new, :create, :update, :edit]
-  before_action :can_delete_user,      only: :destroy
+	before_action :authorized_user, only: [:new, :create, :update, :edit, :destroy]
 
   def new
     @course = Course.new
@@ -52,10 +51,6 @@ class CoursesController < ApplicationController
 		    redirect_to courses_url, notice: "You do not have the correct privileges to access this page"
       end
 		end
-
-    def can_delete_user
-      redirect_to courses_url, notice: "You do not have the correct privileges to access this page" unless current_user.admin? || current_user.course_creator?
-    end
 
     def course_params
       params.require(:course).permit(:name, :description, :permalink)

@@ -22,6 +22,6 @@ class Lesson < ActiveRecord::Base
 			replacements = [ ["\'", ""], [" ", "-"], ["!", ""], ["?", ""] ]
 			replacements.each { |replacement| link.gsub!(replacement[0], replacement[1]) }
 			self.permalink = link.downcase
-			self.lesson_order = self.order.to_s + '-' + self.track.permalink
+			self.lesson_order = self.order.to_s + '-' + self.track.id.to_s
 		end
 end

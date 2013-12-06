@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
 	belongs_to :user
-	has_many :tracks
+	has_many :tracks, dependent: :destroy
 	
 	before_create :create_permalink
 

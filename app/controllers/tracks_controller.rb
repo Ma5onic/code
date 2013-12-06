@@ -1,6 +1,5 @@
 class TracksController < ApplicationController
-  before_action :authorized_user, only: [:new, :create, :edit, :update]
-  before_action :can_delete_user,      only: :destroy
+  before_action :authorized_user, only: [:new, :create, :edit, :update, :destroy]
   
   def new
   	@track = Track.new
@@ -40,9 +39,11 @@ class TracksController < ApplicationController
   end
 
   def destroy
-    Track.find_by_permalink(params[:permalink]).destroy
+    track = Track.find_by_permalink(params[:permalink])
+    course = Course.find(track.course_id)
+    track.destroy
     flash[:success] = "Track successfully deleted."
-    redirect_to courses_url
+    redirect_to tracks_path course
   end
 
   def index
@@ -57,10 +58,6 @@ class TracksController < ApplicationController
       else
        redirect_to courses_url, notice: "You do not have the correct privileges to access this page"
       end
-    end
-
-    def can_delete_user
-      redirect_to courses_url, notice: "You do not have the correct privileges to access this page" unless current_user.admin? || current_user.course_creator?
     end
 
     def track_params

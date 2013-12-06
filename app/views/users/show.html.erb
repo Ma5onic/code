@@ -2,11 +2,11 @@
 
 <div class="user-info">
 	<% if current_user.admin? && !current_user?(@user) %>
-    <%= link_to "delete user as admin", custom_delete_user_path, method: :delete,
-                                        data: { confirm: "You sure?" },
-                                        class: "button button-red action-button-top-right" %>
-  <% end %>
-  <% if current_user?(@user) %>
+		<%= link_to "delete user as admin", custom_delete_user_path, method: :delete,
+		                                    data: { confirm: "You sure?" },
+		                                    class: "button button-red action-button-top-right" %>
+	<% end %>
+	<% if current_user?(@user) %>
 		<%= link_to "update profile", custom_edit_user_path(@user), class: "button button-blue action-button-top-right" %>
 	<% end %>
 	<div class="user-gravatar">
@@ -30,9 +30,9 @@
 <div class="user-lessons">
 <% if @user.lessons.any? %>
 <h3>Lessons Created</h3>
-<ul>
+<ul class="list-group">
 <% @user.lessons.all.each do |lesson| %>
-	<li><%= link_to lesson.name, lesson_path(lesson) %></li>
+	<li class="list-group-item"><%= link_to lesson.name, lesson_path(lesson) %></li>
 <% end %>
 </ul>
 <% end %>

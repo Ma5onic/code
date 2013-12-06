@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find_by_permalink(params[:permalink])
+		@lessons = @user.lessons.all.sort_by! { |l| l.track_id <=> l.order }
 	end
 
 	def edit

@@ -9,9 +9,9 @@ class LessonsController < ApplicationController
 
   def create
     @track = Track.find_by_permalink(params[:permalink])
-    @lesson = @track.lessons.create(lesson_params)
+    @lesson = current_user.lessons.build(lesson_params)
     @course = Course.find(@track.course_id)
-    if @track.save
+    if @lesson.save
       flash[:success] = "Lesson '#{@lesson.name}' created!"
       redirect_to lessons_path @track
     else
@@ -72,7 +72,6 @@ class LessonsController < ApplicationController
 
     def lesson_params
       params.require(:lesson).permit(:name, :content, :starting_content, 
-                                     :instructions, :hints, :order, :user_id,
-                                     :permalink)
+                                     :instructions, :hints, :order, :permalink, :track_id)
     end
 end

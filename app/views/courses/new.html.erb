@@ -18,6 +18,10 @@
 				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
 				<%= f.text_area :description, class: "form-control", placeholder: "Description", rows: "6", id: "courseDescription" %>
 			</div>
+
+			<div class="input-group">
+				<%= f.hidden_field :user_id, value: current_user.id  %>
+			</div>
 			
 			<div class="new-academia-action">
 				<span class="letter-counter"></span>

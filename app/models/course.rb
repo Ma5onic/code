@@ -1,5 +1,4 @@
 class Course < ActiveRecord::Base
-	belongs_to :user
 	has_many :tracks, dependent: :destroy
 	
 	before_create :create_permalink
@@ -18,7 +17,7 @@ class Course < ActiveRecord::Base
 
 		def create_permalink
 			link = self.name.dup
-			replacements = [ ["\'", ""], [" ", "-"], ["!", ""], ["?", ""] ]
+			replacements = [ ["\'", ""], [" ", "-"], ["!", ""], ["?", ""], [";", ""], [":", ""] ]
 			replacements.each {|replacement| link.gsub!(replacement[0], replacement[1])}
 			self.permalink = link.downcase
 		end

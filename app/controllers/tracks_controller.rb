@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
   before_action :authorized_user, only: [:new, :create, :edit, :update]
-  before_action :admin_user,      only: :destroy
+  before_action :can_delete_user,      only: :destroy
   
   def new
   	@track = Track.new
@@ -59,11 +59,11 @@ class TracksController < ApplicationController
       end
     end
 
-    def admin_user
-      redirect_to courses_url, notice: "You do not have the correct privileges to access this page" unless current_user.admin?
+    def can_delete_user
+      redirect_to courses_url, notice: "You do not have the correct privileges to access this page" unless current_user.admin? || current_user.course_creator?
     end
 
     def track_params
-      params.require(:track).permit(:name, :description, :permalink)
+      params.require(:track).permit(:name, :description, :user_id, :permalink)
     end
 end

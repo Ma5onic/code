@@ -11,7 +11,7 @@
 	<div class="academia-card track-card">
 		<div class="academia-card-logo"></div>
 		<div class="academia-card-info">
-			<% if current_user.admin? %>
+			<% if current_user.admin? || current_user?(track.user_id) %>
 				<%= link_to "delete", custom_delete_track_path(track), method: :delete, 
 																												data: { confirm: "You sure?" },
 	                                             					title: track.name, 

@@ -2,7 +2,7 @@
 editor.getSession().setMode("ace/mode/html");
 <% elsif @course.permalink == 'ruby-on-rails' || @course.permalink == 'ruby' %>
 editor.getSession().setMode("ace/mode/ruby");
-<% elsif @course.permalink == 'python' %>
+<% elsif @course.permalink == 'python' || @course.permalink == 'django' %>
 editor.getSession().setMode("ace/mode/python");
 <% elsif @course.permalink == 'javascript' %>
 editor.getSession().setMode("ace/mode/javascript");

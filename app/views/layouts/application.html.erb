@@ -15,16 +15,14 @@
 <div class="container body">
 
 	<% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
   <% end %>
 
 	<%= yield %>
 
   <% if Rails.env.development? %>
     <% if controller.controller_name == "lessons" && controller.action_name == "show" %>
-    <% else %>
-      <%= debug(params) %>
-    <% end %>
+    <% else %><%= debug(params) %><% end %>
   <% end %>
 </div>
 

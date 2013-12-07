@@ -1,9 +1,7 @@
 <% if @course.permalink == 'html' %>
-editor.setOption("wrap", 100);
 editor.getSession().setMode("ace/mode/html");
 <% elsif @course.permalink == 'ruby-on-rails' || @course.permalink == 'ruby' %>
 editor.getSession().setMode("ace/mode/ruby");
-editor.setOption("wrap", 80);
 <% elsif @course.permalink == 'python' || @course.permalink == 'django' %>
 editor.getSession().setMode("ace/mode/python");
 <% elsif @course.permalink == 'javascript' %>

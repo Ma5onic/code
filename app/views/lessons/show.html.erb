@@ -51,6 +51,7 @@
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setTabSize(2);
+	editor.setOption("wrap", 80);
 	document.getElementById('editor').style.fontSize='14px';
 	editor.commands.addCommand({
     name: 'crtl-s',

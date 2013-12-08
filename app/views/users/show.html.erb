@@ -8,8 +8,7 @@
 	<% end %>
 	<% if current_user?(@user) %>
 		<%= link_to "update profile", custom_edit_user_path(@user), class: "button button-blue action-button-top-right" %>
-	<% end %>
-	<% if current_user.admin? %>
+	<% elsif current_user.admin? %>
 		<%= link_to "update profile as admin", custom_edit_user_path(@user), class: "button button-blue action-button-top-right" %>
 	<% end %>
 	<div class="user-gravatar">

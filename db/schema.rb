@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20131206210602) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "lesson_order"
     t.integer  "order"
+    t.string   "lesson_order"
     t.text     "starting_content"
     t.integer  "user_id"
   end

@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.left-column {width:855px;background:#eee}
-.right-column {width:100px;}
-.right-column ul {width:100px;}
+.tracks-container {width:70%;}
+.tracks-sidebar {width:29%;top:0;}
+.tracks-container, .tracks-sidebar {display:inline-block;}
+.tracks-sidebar nav {width:95%;}
+.tracks-sidebar nav ul {list-style:none;border-left:1px solid #eee;}
+.tracks-sidebar nav ul li {height:30px;width:100%;margin:10px;padding:0 20px;border-bottom:1px solid #eee;}
+.tracks-sidebar nav ul li:last-child {border-bottom:none;}
+.tracks-sidebar nav ul li a.current {font-weight:bold;}

@@ -48,6 +48,7 @@ class TracksController < ApplicationController
 
   def index
   	@course = Course.find_by_permalink(params[:permalink])
+    @courses = Course.all
   	@tracks = @course.tracks.all.sort_by! { |c| c.name.downcase }
   end
 

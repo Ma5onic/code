@@ -62,6 +62,6 @@ class TracksController < ApplicationController
     end
 
     def track_params
-      params.require(:track).permit(:name, :description, :user_id, :permalink)
+      params.require(:track).permit(:name, :description, :user_id, :permalink, :order)
     end
 end

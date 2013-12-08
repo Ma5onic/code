@@ -6,6 +6,19 @@
 <%= link_to "Back to courses", courses_path, class: "button button-red action-button-top-right" %>
 <h1><%= @course.name %></h1>
 
+<div class="tracks-sidebar">
+	<nav>
+		<ul>
+			<% @courses.each do |course| %>
+				<% if course == @course %>
+					<li><%= link_to course.name, tracks_path(course), class: 'current' %></li>
+				<% else %>
+					<li><%= link_to course.name, tracks_path(course) %></li>
+				<% end %>
+			<% end %>
+		</ul>
+	</nav>
+</div>
 
 <div class="tracks-container">
 <% @tracks.each do |track| %>
@@ -27,20 +40,6 @@
 		</div>
 	</div>
 <% end %>
-</div>
-
-<div class="tracks-sidebar">
-	<nav>
-		<ul>
-			<% @courses.each do |course| %>
-				<% if course == @course %>
-					<li><%= link_to course.name, tracks_path(course), class: 'current' %></li>
-				<% else %>
-					<li><%= link_to course.name, tracks_path(course) %></li>
-				<% end %>
-			<% end %>
-		</ul>
-	</nav>
 </div>
 
 

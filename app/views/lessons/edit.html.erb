@@ -39,7 +39,7 @@
 				<div id="editor"></div>
 			</div>
 			
-			<%= f.label :instructions %>
+			<%= f.label :instructions %> <span class="lesson-instructions-helper">(when referencing something in the code, wrap it in <code>&lt;code&gt;&lt;/code&gt;</code> tags's)</span>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
 				<%= f.text_area :instructions, class: "form-control", placeholder: "Tell the user what you want them to do", rows: "6"%>

@@ -2,10 +2,11 @@
 
 <style type="text/css" media="screen">
 #editor {position: absolute;top: 61px;right:300px;bottom:0;left:0;}
-#console {position: absolute:left:0;right:300px;bottom:0;}
+#console {position: absolute:left:0;right:300px;bottom:0;height:200px;}
 </style>
 
 <div id="editor"><%= @lesson.starting_content %></div>
+<div id="console"><%= simple_format(@lesson.starting_content) %></div>
 
 <div class="sidebar-lessons">
 	<div class="lessons-container">
@@ -14,7 +15,7 @@
 	</div>
 	<div class="lesson-task-box">
 		<h3 class="center">Task</h3>
-		<p class="lesson-task"><%= @lesson.instructions %></p>
+		<p class="lesson-task"><%= simple_format(@lesson.instructions) %></p>
 	</div>
 	<div class="lessons-container">
 		<div class="lesson-hints-expand">Hints:</div>

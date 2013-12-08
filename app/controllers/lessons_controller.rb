@@ -23,6 +23,17 @@ class LessonsController < ApplicationController
   	@lesson = Lesson.find_by_permalink(params[:permalink])
     @track = Track.find(@lesson.track_id)
     @course = Course.find(@track.course_id)
+    track_lessons = @track.lessons
+    lesson_order = @lesson.order + 1
+
+    track_lessons.each do |l|
+      if l != @lesson
+        if l.order == lesson_order
+          @next_lesson = Lesson.find(l.id)
+        end
+      end      
+    end
+
     if @lesson.user_id
       @creator = User.find(@lesson.user_id)
     else

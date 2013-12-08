@@ -43,7 +43,11 @@
 		<% end %>
 	</div>
 	<div class="sidebar-submit">
-		<%= link_to "Submit Code", '#', class: "button button-green", id: "submit-code" %>
+		<% if @next_lesson %>
+			<%= link_to "Submit Code", lesson_path(@next_lesson), class: "button button-green", id: "submit-code" %>
+		<% else %>
+			<%= link_to "Submit Code", lessons_path(@track), class: "button button-green", id: "submit-code" %>
+		<% end %>
 	</div>
 </div>
 

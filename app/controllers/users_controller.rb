@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:edit, :update, :destroy, :dashboard, :courses]
-	before_action :correct_user,	 only: [:edit, :update]
 	before_action :admin_user,     only: :destroy
+
 	before_action :already_signed_in_user, only: [:create, :new]
+	before_action :correct_or_admin_user,	 only: [:edit, :update]
 
 	def new
 		@user = User.new
@@ -75,9 +76,9 @@ class UsersController < ApplicationController
 
 		# Before filters
 
-		def correct_user
+		def correct_or_admin_user
 			@user = User.find_by_permalink(params[:permalink])
-			redirect_to(root_url) unless current_user?(@user)
+			redirect_to(root_url) unless current_user?(@user) || current_user.admin?
 		end
 
 		def admin_user

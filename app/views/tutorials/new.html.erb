@@ -20,10 +20,15 @@
 				<%= f.text_field :order, class: "form-control", placeholder: "Order" %>
 			</div>
 
-			<%= f.label :content, 'Pre-Task Description' %>
+			<%= f.label :content %> <span class="lesson-instructions-helper">(when referencing something in the code, wrap it in <code>&lt;code&gt;&lt;/code&gt;</code> tags's). If you want to write HTML tags within the 'code' tags, you <strong>MUST</strong> write: 
+				<ul>
+					<li><code><%= '&lt;' %></code> for <code>&lt;</code></li>
+					<li><code><%= '&gt;' %></code> for <code>&gt;</code></li>
+				</ul>
+			</span>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
-				<%= f.text_area :content, class: "form-control", placeholder: "An explanation before the task should go here", rows: "6" %>
+				<%= f.text_area :content, class: "form-control", placeholder: "The content of the Tutorial goes here", rows: "6" %>
 			</div>
 
 			<div class="input-group">

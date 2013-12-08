@@ -71,8 +71,7 @@ class LessonsController < ApplicationController
 
   def index
   	@track = Track.find_by_permalink(params[:permalink])
-    @items = @track.items
-  	@lessons = @track.lessons.all.sort_by! { |l| l.order }
+    @items = @track.items.sort_by! { |l| l.order }
     @course = Course.find(@track.course_id)
   end
 

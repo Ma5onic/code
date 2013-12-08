@@ -1,0 +1,38 @@
+<% provide(:title, 'Edit Tutorial') %>
+
+<div class="panel panel-default signup-panel">
+	<div class="panel-heading">
+		<h2 class="panel-title">Edit Tutorial: <%= @tutorial.name %></h3>
+	</div>
+	<div class="panel-body">
+		<%= form_for(@tutorial) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :name %>
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+				<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+			</div>
+
+			<%= f.label :order, 'Order of Tutorial in Track' %>
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+				<%= f.text_field :order, class: "form-control", placeholder: "Order" %>
+			</div>
+
+			<%= f.label :content, 'Pre-Task Description' %>
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
+				<%= f.text_area :content, class: "form-control", placeholder: "An explanation before the task should go here", rows: "6" %>
+			</div>
+
+			<div class="input-group">
+				<%= f.hidden_field :track_id, value: @track.id  %>
+			</div>
+
+			<div class="new-academia-action">
+				<%= f.submit "Update Tutorial", class: "btn btn-large btn-primary" %>
+			</div>
+		<% end %>
+	</div>
+</div>

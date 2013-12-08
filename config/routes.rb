@@ -51,6 +51,21 @@ Code::Application.routes.draw do
   match '/lesson/:permalink',      to: 'lessons#update',  via: 'put'
   match '/lesson/:permalink',      to: 'lessons#update',  via: 'patch'
 
+  # Tutorials
+  match '/track/:permalink/tutorial/new', to: 'tutorials#new',    via: 'get', as: 'new_track_tutorial'
+  match '/track/:permalink/tutorials',    to: 'tutorials#index',  via: 'get', as: 'tutorials'
+  match '/track/:permalink/tutorials',    to: 'tutorials#create', via: 'post'
+  match '/track/:permalink/tutorials',    to: 'tutorials#create', via: 'put'
+  match '/track/:permalink/tutorials',    to: 'tutorials#create', via: 'patch'
+
+  # Short Tutorial Permalinks
+  match '/tutorial/:permalink',      to: 'tutorials#show',    via: 'get',    as: 'tutorial'
+  match '/tutorial/:permalink/edit', to: 'tutorials#edit',    via: 'get',    as: 'edit_tutorial'
+  match '/tutorial/:permalink',      to: 'tutorials#destroy', via: 'delete', as: 'delete_tutorial'
+  match '/tutorial/:permalink',      to: 'tutorials#update',  via: 'post'
+  match '/tutorial/:permalink',      to: 'tutorials#update',  via: 'put'
+  match '/tutorial/:permalink',      to: 'tutorials#update',  via: 'patch'
+
   # Users
   match '/signup',  to: 'users#new',        via: 'get'
   match '/signin',  to: 'sessions#new',     via: 'get'

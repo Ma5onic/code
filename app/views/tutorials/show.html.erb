@@ -1,0 +1,25 @@
+<% provide(:title, @tutorial.name) %>
+
+<% if current_user.admin? || current_user?(@tutorial.user_id) %>
+	<%= link_to "Delete tutorial", delete_tutorial_path(@tutorial), method: :delete, 
+												data: { confirm: "You sure?" },title: @tutorial.name, 
+	                      class: "button button-red action-button-top-right" %>
+<% end %>
+<% if current_user.admin? || current_user.course_creator? %>
+	<%= link_to "Edit tutorial", edit_tutorial_path(@tutorial), class: "button button-red action-button-top-right" %>
+<% end %>
+<%= link_to "Back to Track", lessons_path(@track), class: "button button-green action-button-top-right" %>
+
+<div class="tutorial-content">
+	<span class="tutorial-badge"><%= @track.name %></span>
+	<h1><%= @tutorial.name %></h1>
+	<p><%= simple_format(@tutorial.content) %></p>
+
+	<% if @next_item.class.name == 'Lesson' %>
+		<%= link_to "Next", lesson_path(@next_item), class: "button button-green", id: "submit-code" %>
+	<% elsif @next_item.class.name == 'Tutorial' %>
+		<%= link_to "Next", tutorial_path(@next_item), class: "button button-green", id: "submit-code" %>
+	<% else %>
+		<%= link_to "Next", lessons_path(@track), class: "button button-green", id: "submit-code" %>
+	<% end %>
+</div>

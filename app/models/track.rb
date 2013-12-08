@@ -1,6 +1,7 @@
 class Track < ActiveRecord::Base
 	belongs_to :course
-	has_many :lessons, dependent: :destroy
+	has_many :lessons,   dependent: :destroy
+	has_many :tutorials, dependent: :destroy
 	
 	before_create :create_permalink
 
@@ -12,6 +13,10 @@ class Track < ActiveRecord::Base
 
 	def to_param
 		permalink
+	end
+
+	def items
+		Lesson.belonging_to_track(self) +	Tutorial.belonging_to_track(self)
 	end
 
 	private

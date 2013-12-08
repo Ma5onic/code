@@ -1,18 +1,17 @@
-class Lesson < ActiveRecord::Base
+class Tutorial < ActiveRecord::Base
 	belongs_to :track
 	belongs_to :user
 
 	before_validation :create_permalink
 
-	validates :name,         presence: true, length: { maximum: 50 },
-													 uniqueness: { case_sensitive: false }
-	validates :content,      presence: true
-	validates :instructions, presence: true
-	validates :order,        presence: true
-	validates :permalink,    length: { maximum: 50 },
-													 uniqueness: { case_sensitive: false }
-	validates :user_id,      presence: true
-	validates :track_id,     presence: true
+	validates :name,      presence: true, length: { maximum: 50 },
+									      uniqueness: { case_sensitive: false }
+	validates :content,   presence: true
+	validates :order,     presence: true
+	validates :track_id,  presence: true
+	validates :user_id,   presence: true
+	validates :permalink, length: { maximum: 50 },
+												uniqueness: { case_sensitive: false }
 
 	def to_param
 		permalink
@@ -21,7 +20,7 @@ class Lesson < ActiveRecord::Base
 	def self.belonging_to_track(t)
 		where(track_id: t.id)
 	end
-	
+
 	private
 
 		def create_permalink

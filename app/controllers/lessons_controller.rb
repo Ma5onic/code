@@ -23,15 +23,18 @@ class LessonsController < ApplicationController
   	@lesson = Lesson.find_by_permalink(params[:permalink])
     @track = Track.find(@lesson.track_id)
     @course = Course.find(@track.course_id)
-    track_lessons = @track.lessons
-    lesson_order = @lesson.order + 1
+    track_content = @track.lessons + @track.tutorials
 
-    track_lessons.each do |l|
-      if l != @lesson
-        if l.order == lesson_order
-          @next_lesson = Lesson.find(l.id)
+    track_content.each do |c|
+      if c != @lesson
+        if c.order == @lesson.order + 1
+          if c.class.name != @lesson.class.name
+            @next_item = Tutorial.find(c.id)
+          else
+            @next_item = Lesson.find(c.id)
+          end
         end
-      end      
+      end
     end
 
     if @lesson.user_id
@@ -68,6 +71,7 @@ class LessonsController < ApplicationController
 
   def index
   	@track = Track.find_by_permalink(params[:permalink])
+    @items = @track.items
   	@lessons = @track.lessons.all.sort_by! { |l| l.order }
     @course = Course.find(@track.course_id)
   end

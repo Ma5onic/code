@@ -9,11 +9,19 @@
 		<%= form_for @track, url: {action: :create} do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
+			<%= f.label :name %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
 				<%= f.text_field :name, class: "form-control Username", placeholder: "Name" %>
 			</div>
 
+			<%= f.label :order, 'Order of Track in Course' %>
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
+				<%= f.text_field :order, class: "form-control Username", placeholder: "Order" %>
+			</div>
+
+			<%= f.label :description %>
 			<div class="input-group">
 				<span class="input-group-addon"><span class="glyphicon glyphicon-align-left"></span></span>
 				<%= f.text_area :description, class: "form-control", placeholder: "Description", rows: "6", id: "courseDescription" %>

@@ -36,15 +36,18 @@ def make_courses
   track1 = Track.create!(name: 'Introduction to HTML',
                          description: 'This track will teach you the basics of HTML, what goes into a HTML webpage and how to structure a HTML document.',
                          course_id: course1.id,
-                         user_id: 1)
+                         user_id: 1,
+                         order: 1)
   track2 = Track.create!(name: 'HTML the 5\'th',
                          description: 'This track will teach you HTML5 and how to effectively use HTML5 tags.',
                          course_id: course1.id,
-                         user_id: 1)
+                         user_id: 1,
+                         order: 2)
   track3 = Track.create!(name: 'Python Basics',
                          description: 'This track will teach you the basics of python.',
                          course_id: course2.id,
-                         user_id: 2)
+                         user_id: 2,
+                         order: 1)
   lesson1 = Lesson.create!(name: 'Python: What you will Learn',
                            content: 'These are some of the things you will learn about in the upcoming lessons.',
                            instructions: 'Read through the code on the left and press Submit when you are ready.',

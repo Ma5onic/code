@@ -27,12 +27,25 @@ class UsersController < ApplicationController
 	def edit
   end
 
+  def editpassword
+  	@user = User.find_by_permalink(params[:permalink])
+  end
+
+  def updatepassword
+  	if @user.update_attributes(password_user_params)
+  		flash[:success] = "Password updated"
+  		redirect_to custom_user_path @user
+  	else
+  		render :editpassword
+  	end	
+  end
+
 	def update
 		if @user.update_attributes(user_params)
 			flash[:success] = "Profile updated"
 			redirect_to custom_user_path @user
 		else
-			render 'edit'
+			render :edit
 		end
 	end
 
@@ -54,6 +67,10 @@ class UsersController < ApplicationController
 		def user_params
 			params.require(:user).permit(:name, :email, :username, :location,
 																	 :password, :password_confirmation)
+		end
+
+		def password_user_params
+			params.require(:user).permit(:password, :password_confirmation)
 		end
 
 		# Before filters

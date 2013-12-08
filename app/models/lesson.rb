@@ -8,7 +8,7 @@ class Lesson < ActiveRecord::Base
 													 uniqueness: { case_sensitive: false }
 	validates :content,      presence: true
 	validates :instructions, presence: true
-	validates :lesson_order, presence: true, uniqueness: true
+	validates :order,        presence: true
 	validates :permalink,    length: { maximum: 50 },
 													 uniqueness: { case_sensitive: false }
 	validates :user_id,      presence: true
@@ -22,9 +22,8 @@ class Lesson < ActiveRecord::Base
 
 		def create_permalink
 			link = self.name.dup
-			replacements = [ ["\'", ""], [" ", "-"], ["!", ""], ["?", ""], [";", ""], [":", ""] ]
+			replacements = [ ["\'", ""], [" ", "-"], ["!", ""], ["?", ""], [";", ""], [":", ""], [",", ""], [".", ""] ]
 			replacements.each { |replacement| link.gsub!(replacement[0], replacement[1]) }
 			self.permalink = link.downcase
-			self.lesson_order = self.order.to_s + '-' + self.track_id.to_s
 		end
 end

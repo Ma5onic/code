@@ -22,9 +22,14 @@
 			<td><%= user.email %></td>
 			<td>
 				<% if current_user.admin? && !current_user?(user) %>
-					<%= link_to "delete user", custom_delete_user_path(user),
+					<%= link_to "delete", custom_delete_user_path(user),
 						                         method: :delete,
 						                         data: { confirm: "You sure?" } %>
+				<% end %>
+			</td>
+			<td>
+				<% if current_user.admin? %>
+					<%= link_to "edit", custom_edit_user_path(user) %>
 				<% end %>
 			</td>
 		</tr>

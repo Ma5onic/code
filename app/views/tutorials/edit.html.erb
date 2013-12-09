@@ -1,6 +1,7 @@
 <% provide(:title, 'Edit Tutorial') %>
 
-<div class="panel panel-default signup-panel">
+<%= link_to "Back to Track", lessons_path(@track), class: "button button-green action-button-top-right" %>
+<div class="panel panel-default new-academia-panel">
 	<div class="panel-heading">
 		<h2 class="panel-title">Edit Tutorial: <%= @tutorial.name %></h3>
 	</div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:edit, :update, :destroy, :dashboard, :courses, :editpassword]
-	before_action :admin_user,     only: :destroy
+	before_action :admin_user,     only: [:destroy, :index]
 	before_action :correct_user,   only: [:editpassword, :updatepassword]
 
 	before_action :already_signed_in_user, only: [:create, :new]
@@ -58,6 +58,10 @@ class UsersController < ApplicationController
 	end
 
 	def dashboard
+	end
+
+	def index
+		@users = User.all
 	end
 
 	def courses

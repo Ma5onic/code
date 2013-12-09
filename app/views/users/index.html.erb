@@ -1,27 +1,35 @@
 <% provide(:title, 'All Users') %>
 
 <div class="panel panel-default">
-  <div class="panel-heading">All Users</div>
+	<div class="panel-heading">All Users <span class="badge"><%= @users.count %></span></div>
 
-  <table class="table table-hover">
-    <thead>
-    	<th>Username</th>
-    	<th>Name</th>
-    	<th>Points</th>
-    	<th>Location</th>
-    	<th>Email</th>
-    </thead>
-    <tbody>
-    <% @users.each do |user| %>
-    <tr>
-    	<td><%= gravatar_for user, size: 30 %> <%= link_to user.username, user %></td>
-    	<td><%= user.name if user.name %></td>
-    	<td><%= user.points %></td>
-    	<td><%= user.location %></td>
-    	<td><%= user.email %></td>
-    </tr>
-    <% end %>
-    </tbody>
-  </table>
+	<table class="table table-hover">
+		<thead>
+			<th>Username</th>
+			<th>Name</th>
+			<th>Points</th>
+			<th>Location</th>
+			<th>Email</th>
+			<th>Delete</th>
+		</thead>
+		<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= gravatar_for user, size: 30 %> <%= link_to user.username, user %></td>
+			<td><%= user.name if user.name %></td>
+			<td><%= user.points %></td>
+			<td><%= user.location %></td>
+			<td><%= user.email %></td>
+			<td>
+				<% if current_user.admin? && !current_user?(user) %>
+					<%= link_to "delete user", custom_delete_user_path(user),
+						                         method: :delete,
+						                         data: { confirm: "You sure?" } %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
 
 </div>

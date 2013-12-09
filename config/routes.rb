@@ -71,7 +71,7 @@ Code::Application.routes.draw do
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
-  match '/:permalink', to: 'users#update', via: 'put', as: 'user'
+  match '/:permalink', to: 'users#update', via: 'put'
   match '/:permalink', to: 'users#update', via: 'patch'
   match '/:permalink', to: 'users#update', via: 'post'
   match '/:permalink', to: 'users#updatepassword', via: 'put'
@@ -81,7 +81,7 @@ Code::Application.routes.draw do
   # All paths must be declared before this to ensure Rails does not think
   # it is a username for a user (:permalink)
   match '/:permalink',      to: 'users#destroy', via: 'delete', as: 'custom_delete_user'
-  get   '/:permalink',      to: 'users#show',    as: 'custom_user'
+  get   '/:permalink',      to: 'users#show',    as: 'user'
   get   '/:permalink/edit', to: 'users#edit',    as: 'custom_edit_user'
   get   '/:permalink/editpassword', to: 'users#editpassword', as: 'edit_user_password'
 

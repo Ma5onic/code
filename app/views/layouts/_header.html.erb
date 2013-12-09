@@ -71,12 +71,6 @@
       </button>
       <% if signed_in? %>
         <%= link_to "Code", dashboard_url, class: "navbar-brand" %>
-        <ul class="nav navbar-nav">
-          <% if controller.controller_name == 'lessons' && controller.action_name == 'show' %>
-          <li><%= link_to "Courses", courses_path %></li>
-          <li><%= link_to "Back to #{@course.name}: #{@track.name}", lessons_path(@track) %></li>
-          <% end %>
-        </ul>
       <% else %>
         <%= link_to "Code", root_url, class: "navbar-brand" %>
       <% end %>
@@ -87,8 +81,9 @@
           <li><%= link_to "Sign In", signin_path %></li>
           <li><%= link_to "Create an Account", signup_path %></li>
         <% else %>
+          <li><%= link_to "All Users", courses_path %></li>
           <li><%= link_to "Courses", courses_path %></li>
-          <li><%= link_to(current_user.points.to_s + " Points", custom_user_path(current_user)) %></li>
+          <li><%= link_to(current_user.points.to_s + " Points", user_path(current_user)) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="name-next-to-gravatar"><%= current_user.username %></span> 
@@ -97,7 +92,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="<%= custom_user_path(current_user) %>">
+                <a href="<%= user_path(current_user) %>">
                   <span class="glyphicon glyphicon-comment"></span> My Profile
                 </a>
               </li>

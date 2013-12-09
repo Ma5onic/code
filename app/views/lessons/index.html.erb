@@ -14,7 +14,7 @@
 			<% if item.class.name == 'Lesson' %>
 				<li class="list-group-item"><%= link_to item.name, lesson_path(item) %> 
 					<span class="label label-primary">
-						<% if item.class.name == 'Lesson' %>Interactive Lesson<% else %>Tutorial<% end %> 
+						<% if item.class.name == 'Lesson' %>Interactive Lesson<% end %> 
 					</span>
 					<% if current_user.admin? || current_user?(item.user_id) %>
 						<%= link_to " delete", delete_lesson_path(item), 

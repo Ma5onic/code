@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		User.find_by_username(params[:permalink]).destroy
+		User.find_by_permalink(params[:permalink]).destroy
 		flash[:success] = "User deleted."
 		redirect_to root_url
 	end

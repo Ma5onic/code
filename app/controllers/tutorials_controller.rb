@@ -62,9 +62,9 @@ class TutorialsController < ApplicationController
   end
 
   def destroy
-    lesson = Lesson.find_by_permalink(params[:permalink])
-    track = Track.find(lesson.track_id)
-    lesson.destroy
+    tutorial = Tutorial.find_by_permalink(params[:permalink])
+    track = Track.find(tutorial.track_id)
+    tutorial.destroy
     flash[:success] = "Lesson successfully deleted."
     redirect_to lessons_path track
   end

@@ -19,7 +19,7 @@
 		<% if @user.name %>
 			<span class="user-name light-gray"><%= @user.name %></span>
 		<% end %>
-		<% if @user.location %>
+		<% if @user.location.blank? %>
 			<div class="user-location"><span class="glyphicon glyphicon-map-marker"></span> <%= @user.location %></div>
 		<% end %>
 		<div class="user-points">

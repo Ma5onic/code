@@ -10,8 +10,10 @@
 			<th>Points</th>
 			<th>Location</th>
 			<th>Email</th>
-			<th>Edit</th>
-			<th>Delete</th>
+			<% if current_user.admin? %>
+				<th>Edit</th>
+				<th>Delete</th>
+			<% end %>
 		</thead>
 		<tbody>
 		<% @users.each do |user| %>
@@ -21,18 +23,15 @@
 			<td><%= user.points %></td>
 			<td><%= user.location %></td>
 			<td><%= user.email %></td>
-			<td>
-				<% if current_user.admin? %>
-					<%= link_to "edit", custom_edit_user_path(user) %>
-				<% end %>
-			</td>
-			<td>
-				<% if current_user.admin? && !current_user?(user) %>
-					<%= link_to "delete", custom_delete_user_path(user),
+			<% if current_user.admin? %>
+				<td><%= link_to "edit", custom_edit_user_path(user) %></td>
+			<% end %>
+			<% if current_user.admin? && !current_user?(user) %>
+				<td><%= link_to "delete", custom_delete_user_path(user),
 						                         method: :delete,
 						                         data: { confirm: "You sure?" } %>
-				<% end %>
-			</td>
+				</td>
+			<% end %>
 		</tr>
 		<% end %>
 		</tbody>

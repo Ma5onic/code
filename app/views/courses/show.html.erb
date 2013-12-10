@@ -1,7 +1,7 @@
 <% provide(:title, @course.name) %>
 
 <%= link_to "Back to Courses", courses_path, class: "button button-red action-course-button" %>
-<% if current_user.admin? || current_user.course_creator? %>
+<% if current_user.admin? %>
 <%= link_to "Delete Course as Admin", @course, method: :delete, data: { confirm: "You sure?" },
                                      		title: @course.name, class: "button button-red action-course-button" %>
 <% end %>

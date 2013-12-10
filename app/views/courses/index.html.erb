@@ -10,7 +10,7 @@
 	<div class="academia-card course-card">
 		<div class="academia-card-logo"></div>
 		<div class="academia-card-info">
-			<% if current_user.admin? || current_user?(course.user_id) %>
+			<% if current_user.admin? %>
 				<%= link_to "delete", custom_course_path(course), method: :delete, 
 																													data: { confirm: "You sure?" },
 	                                                        title: course.name, 

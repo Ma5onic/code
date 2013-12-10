@@ -3,12 +3,12 @@ class LessonsController < ApplicationController
   
   def new
   	@lesson = Lesson.new
-    @track = Track.find_by_permalink(params[:permalink])
+    @track = Track.find_by(permalink: params[:permalink])
     @course = Course.find(@track.course_id)
   end
 
   def create
-    @track = Track.find_by_permalink(params[:permalink])
+    @track = Track.find_by(permalink: params[:permalink])
     @lesson = current_user.lessons.build(lesson_params)
     @course = Course.find(@track.course_id)
     if @lesson.save
@@ -20,7 +20,7 @@ class LessonsController < ApplicationController
   end
 
   def show
-  	@lesson = Lesson.find_by_permalink(params[:permalink])
+  	@lesson = Lesson.find_by(permalink: params[:permalink])
     @track = Track.find(@lesson.track_id)
     @course = Course.find(@track.course_id)
     track_content = @track.lessons + @track.tutorials
@@ -40,18 +40,18 @@ class LessonsController < ApplicationController
     if @lesson.user_id
       @creator = User.find(@lesson.user_id)
     else
-      @creator = User.find_by_permalink('admin')
+      @creator = User.find_by(permalink: 'admin')
     end
   end
 
   def edit
-    @lesson = Lesson.find_by_permalink(params[:permalink])
+    @lesson = Lesson.find_by(permalink: params[:permalink])
     @track = Track.find(@lesson.track_id)
     @course = Course.find(@track.course_id)
   end
 
   def update
-    @lesson = Lesson.find_by_permalink(params[:permalink])
+    @lesson = Lesson.find_by(permalink: params[:permalink])
     @track = Track.find(@lesson.track_id)
     if @lesson.update_attributes(lesson_params)
       flash[:success] = "Lesson updated successfully"
@@ -62,7 +62,7 @@ class LessonsController < ApplicationController
   end
 
   def destroy
-    lesson = Lesson.find_by_permalink(params[:permalink])
+    lesson = Lesson.find_by(permalink: params[:permalink])
     track = Track.find(lesson.track_id)
     lesson.destroy
     flash[:success] = "Lesson successfully deleted."
@@ -70,7 +70,7 @@ class LessonsController < ApplicationController
   end
 
   def index
-  	@track = Track.find_by_permalink(params[:permalink])
+  	@track = Track.find_by(permalink: params[:permalink])
     @items = @track.items.sort_by! { |l| l.order }
     @course = Course.find(@track.course_id)
   end

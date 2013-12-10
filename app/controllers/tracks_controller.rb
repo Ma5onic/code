@@ -3,11 +3,11 @@ class TracksController < ApplicationController
   
   def new
   	@track = Track.new
-    @course = Course.find_by_permalink(params[:permalink])
+    @course = Course.find_by(permalink: params[:permalink])
   end
 
   def create
-    @course = Course.find_by_permalink(params[:permalink])
+    @course = Course.find_by(permalink: params[:permalink])
     @track = @course.tracks.create(track_params)
     if @track.save
       flash[:success] = "Track created!"
@@ -18,17 +18,17 @@ class TracksController < ApplicationController
   end
 
   def show
-  	@track = Track.find_by_permalink(params[:permalink])
+  	@track = Track.find_by(permalink: params[:permalink])
     @course = Course.find(@track.course_id)
   end
 
   def edit
-    @track = Track.find_by_permalink(params[:permalink])
+    @track = Track.find_by(permalink: params[:permalink])
     @course = Course.find(@track.course_id)
   end
 
   def update
-    @track = Track.find_by_permalink(params[:permalink])
+    @track = Track.find_by(permalink: params[:permalink])
     @course = Course.find(@track.course_id)
     if @track.update_attributes(track_params)
       flash[:success] = "Track updated successfully"
@@ -39,7 +39,7 @@ class TracksController < ApplicationController
   end
 
   def destroy
-    track = Track.find_by_permalink(params[:permalink])
+    track = Track.find_by(permalink: params[:permalink])
     course = Course.find(track.course_id)
     track.destroy
     flash[:success] = "Track successfully deleted."
@@ -47,7 +47,7 @@ class TracksController < ApplicationController
   end
 
   def index
-  	@course = Course.find_by_permalink(params[:permalink])
+  	@course = Course.find_by(permalink: params[:permalink])
     @courses = Course.all
   	@tracks = @course.tracks.all.sort_by! { |c| c.order }
   end

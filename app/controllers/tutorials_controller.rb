@@ -3,12 +3,12 @@ class TutorialsController < ApplicationController
 
   def new
   	@tutorial = Tutorial.new
-  	@track = Track.find_by_permalink(params[:permalink])
+  	@track = Track.find_by(permalink: params[:permalink])
   	@course = Course.find(@track.course_id)
   end
 
   def create
-    @track = Track.find_by_permalink(params[:permalink])
+    @track = Track.find_by(permalink: params[:permalink])
     @tutorial = current_user.tutorials.build(tutorial_params)
     @course = Course.find(@track.course_id)
     if @tutorial.save
@@ -20,7 +20,7 @@ class TutorialsController < ApplicationController
   end
 
   def show
-  	@tutorial = Tutorial.find_by_permalink(params[:permalink])
+  	@tutorial = Tutorial.find_by(permalink: params[:permalink])
     @track = Track.find(@tutorial.track_id)
     @course = Course.find(@track.course_id)
     track_content = @track.lessons + @track.tutorials
@@ -40,18 +40,18 @@ class TutorialsController < ApplicationController
     if @tutorial.user_id
       @creator = User.find(@tutorial.user_id)
     else
-      @creator = User.find_by_permalink('admin')
+      @creator = User.find_by(permalink: 'admin')
     end
   end
 
   def edit
-    @tutorial = Tutorial.find_by_permalink(params[:permalink])
+    @tutorial = Tutorial.find_by(permalink: params[:permalink])
     @track = Track.find(@tutorial.track_id)
     @course = Course.find(@track.course_id)
   end
 
   def update
-    @tutorial = Tutorial.find_by_permalink(params[:permalink])
+    @tutorial = Tutorial.find_by(permalink: params[:permalink])
     @track = Track.find(@tutorial.track_id)
     if @tutorial.update_attributes(tutorial_params)
       flash[:success] = "Tutorial updated successfully"
@@ -62,7 +62,7 @@ class TutorialsController < ApplicationController
   end
 
   def destroy
-    tutorial = Tutorial.find_by_permalink(params[:permalink])
+    tutorial = Tutorial.find_by(permalink: params[:permalink])
     track = Track.find(tutorial.track_id)
     tutorial.destroy
     flash[:success] = "Lesson successfully deleted."
@@ -70,7 +70,7 @@ class TutorialsController < ApplicationController
   end
 
   def index
-    @track = Track.find_by_permalink(params[:permalink])
+    @track = Track.find_by(permalink: params[:permalink])
     @items = @track.items
     @lessons = @track.lessons.all.sort_by! { |l| l.order }
     @course = Course.find(@track.course_id)

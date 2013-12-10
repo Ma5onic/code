@@ -16,11 +16,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find_by_permalink(params[:permalink])
+    @course = Course.find_by(permalink: params[:permalink])
   end
 
   def update
-    @course = Course.find_by_permalink(params[:permalink])
+    @course = Course.find_by(permalink: params[:permalink])
     if @course.update_attributes(course_params)
       flash[:success] = "Course updated successfully"
       redirect_to courses_url
@@ -34,11 +34,11 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find_by_permalink(params[:permalink])
+    @course = Course.find_by(permalink: params[:permalink])
   end
 
   def destroy
-    Course.find_by_permalink(params[:permalink]).destroy
+    Course.find_by(permalink: params[:permalink]).destroy
     flash[:success] = "Course successfully deleted."
     redirect_to courses_url
   end

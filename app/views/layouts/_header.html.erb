@@ -83,7 +83,7 @@
         <% else %>
           <li><%= link_to "All Users", users_path %></li>
           <li><%= link_to "Courses", courses_path %></li>
-          <li><%= link_to(current_user.points.to_s + " Points", user_path(current_user)) %></li>
+          <li><%= link_to("0 Points", user_path(current_user)) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="name-next-to-gravatar"><%= current_user.username %></span> 

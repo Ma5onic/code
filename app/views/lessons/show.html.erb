@@ -26,9 +26,9 @@
 	<div class="lessons-container">
 		Created by: <%= gravatar_for @creator, size: 52, circle: true %>
 		<% if @creator.name.present? %>
-			<%= link_to @creator.name, custom_user_path(@creator) %>
+			<%= link_to @creator.name, user_path(@creator) %>
 		<% else %>
-			<%= link_to @creator.username, custom_user_path(@creator) %>
+			<%= link_to @creator.username, user_path(@creator) %>
 		<% end %>
 	</div>
 	<div class="edit-lesson-show">

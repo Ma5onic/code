@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
 		SecureRandom.urlsafe_base64
 	end
 
-	def User.encrypt(token)
-		Digest::SHA1.hexdigest(token.to_s)
-	end
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
 
-	def complete!(lesson)
+  def complete!(lesson)
     progresses.create!(lesson_id: lesson.id)
   end
 
@@ -49,8 +49,8 @@ class User < ActiveRecord::Base
 		def create_remember_token
 			self.remember_token = User.encrypt(User.new_remember_token)
 		end
-
+    
 		def create_permalink
-			self.permalink = username.downcase
+      self.permalink = username.downcase
 		end
 end

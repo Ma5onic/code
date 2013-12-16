@@ -11,7 +11,7 @@
       <%= link_to "Code", dashboard_url, class: "navbar-brand" %>
       <ul class="nav navbar-nav">
         <li><%= link_to "Courses", courses_path %></li>
-        <li><%= link_to "Back to #{@course.name}: #{@track.name}", lessons_path(@track) %></li>
+        <li><%= link_to "Back to #{@course.name}: #{@track.name}", track_path(@track) %></li>
       </ul>
     <% else %>
       <%= link_to "Code", root_url, class: "navbar-brand" %>

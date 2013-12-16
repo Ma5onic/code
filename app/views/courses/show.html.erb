@@ -1,8 +1,44 @@
 <% provide(:title, @course.name) %>
 
-<%= link_to "Back to Courses", courses_path, class: "button button-red action-course-button" %>
+<%= link_to "Back to Courses", courses_path, class: "button-nav button-nav-red action-course-button" %>
 <% if current_user.admin? %>
 <%= link_to "Delete Course as Admin", @course, method: :delete, data: { confirm: "You sure?" },
-                                     		title: @course.name, class: "button button-red action-course-button" %>
+                                     		title: @course.name, class: "button-nav button-nav-red action-course-button" %>
 <% end %>
 <h1><%= @course.name %></h1>
+
+<div class="tracks-sidebar">
+	<nav>
+		<ul>
+			<% @courses.each do |course| %>
+				<% if course == @course %>
+					<li><%= link_to course.name, tracks_path(course), class: 'current' %></li>
+				<% else %>
+					<li><%= link_to course.name, tracks_path(course) %></li>
+				<% end %>
+			<% end %>
+		</ul>
+	</nav>
+</div>
+
+<div class="tracks-container">
+<% @course.tracks.each do |track| %>
+  <div class="academia-card track-card">
+    <div class="academia-card-logo"></div>
+    <div class="academia-card-info">
+      <% if current_user.admin? || current_user?(track.user_id) %>
+				<%= link_to "delete", custom_delete_track_path(track), method: :delete, 
+																												data: { confirm: "You sure?" },
+	                                             					title: track.name, 
+	                                             					class: "academia-card-delete" %>
+      <% end %>
+      <% if current_user.admin? || current_user.course_creator? %>
+        <%= link_to "edit", edit_track_path(track), class: "academia-card-update" %>
+      <% end %>
+      <h2 class="academia-card-info-title"><%= track.name %></h2>
+      <div class="academia-card-info-description"><%= track.description %></div>
+      <%= link_to "View track", track_path(track), class: "button-nav button-nav-red" %>
+    </div>
+  </div>
+<% end %>
+</div>

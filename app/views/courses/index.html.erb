@@ -1,7 +1,7 @@
 <% provide(:title, 'Courses') %>
 
 <% if current_user.admin? || current_user.course_creator? %>
-	<%= link_to "Create new course", new_course_path, class: "button button-red action-button-top-right" %>
+	<%= link_to "Create new course", new_course_path, class: "button-nav button-nav-red action-button-top-right" %>
 <% end %>
 <h1>Courses</h1>
 
@@ -21,7 +21,7 @@
       <% end %>
 			<h2 class="academia-card-info-title"><%= course.name %></h2>
 			<div class="academia-card-info-description"><%= course.description %></div>
-			<%= link_to "View course", tracks_path(course), class: "button button-red" %>
+			<%= link_to "View course", course_path(course), class: "button-nav button-nav-red" %>
 		</div>
 	</div>
 <% end %>

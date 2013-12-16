@@ -19,6 +19,7 @@ class TracksController < ApplicationController
 
   def show
   	@track = Track.find_by(permalink: params[:permalink])
+    @items = @track.items.sort_by! { |l| l.order }
     @course = Course.find(@track.course_id)
   end
 

@@ -36,6 +36,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find_by(permalink: params[:permalink])
+    @courses = Course.all
   end
 
   def destroy

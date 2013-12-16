@@ -29,47 +29,47 @@
 			<%= link_to @creator.name, user_path(@creator) %>
 		<% else %>
 			<%= link_to @creator.username, user_path(@creator) %>
-		<% end %>
-	</div>
-	<div class="edit-lesson-show">
-		<% if current_user.admin? || current_user.course_creator? %>
-			<%= link_to "edit lesson", edit_lesson_path(@lesson), class: "button button-red" %>
-		<% end %>
-		<% if current_user.admin? || current_user?(@lesson.user_id) %>
+    <% end %>
+  </div>
+  <div class="edit-lesson-show">
+    <% if current_user.admin? || current_user.course_creator? %>
+			<%= link_to "edit lesson", edit_lesson_path(@lesson), class: "button-nav button-nav-red" %>
+    <% end %>
+    <% if current_user.admin? || current_user?(@lesson.user_id) %>
 			<%= link_to "delete lesson", delete_lesson_path(@lesson), 
 			                             method: :delete, 
 																	 data: { confirm: "You sure?" },
 	                                 title: @lesson.name,
-	                                 class: "button button-red" %>
+	                                 class: "button-nav button-nav-red" %>
 		<% end %>
-	</div>
+  </div>
 	<div class="sidebar-submit">
 		<% if @next_item.class.name == 'Lesson' %>
-			<%= link_to "Submit Code", lesson_path(@next_item), class: "button button-green", id: "submit-code" %>
+			<%= link_to "Submit Code", lesson_path(@next_item), class: "button button-4 button-4a icon-arrow-right", id: "submit-code" %>
 		<% elsif @next_item.class.name == 'Tutorial' %>
-			<%= link_to "Submit Code", tutorial_path(@next_item), class: "button button-green", id: "submit-code" %>
+			<%= link_to "Submit Code", tutorial_path(@next_item), class: "button button-4 button-4a icon-arrow-right", id: "submit-code" %>
 		<% else %>
-			<%= link_to "Submit Code", lessons_path(@track), class: "button button-green", id: "submit-code" %>
+			<%= link_to "Submit Code", lessons_path(@track), class: "button button-4 button-4a icon-arrow-right", id: "submit-code" %>
 		<% end %>
 	</div>
 </div>
 
 <script>
-	var editor = ace.edit("editor");
-	editor.setTheme("ace/theme/monokai");
-	editor.getSession().setTabSize(2);
-	editor.setOption("wrap", 80);
-	document.getElementById('editor').style.fontSize='14px';
-	editor.commands.addCommand({
-    name: 'crtl-s',
-    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setTabSize(2);
+  editor.setOption("wrap", 80);
+  document.getElementById('editor').style.fontSize='14px';
+  editor.commands.addCommand({
+    name: 'Save Code',
+    bindKey: {win: 'Ctrl-Enter',  mac: 'Command-Enter'},
     exec: function(editor) {
-    		if (confirm("Do you want to submit this code?")) {
-    			document.getElementById('submit-code').click();
-    		}
+      if (confirm("Do you want to submit this code?")) {
+        document.getElementById('submit-code').click();
+      }
     },
     readOnly: true
-	});
-	<%= render 'lessons/set_language_show' %>
+  });
+  <%= render 'lessons/set_language_show' %>
 </script>
 

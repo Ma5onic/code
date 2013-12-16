@@ -7,7 +7,7 @@ $width-of-lessons-sidebar: 300px;
 /* show */
 .sidebar-lessons {position:absolute;top:61px;right:0;background:#F5F5F5;width:$width-of-lessons-sidebar;bottom:72px;overflow-y:scroll;padding-bottom:40px;}
 .sidebar-submit {position:fixed;right:0;bottom:0;width:$width-of-lessons-sidebar;height:90px;background:#eee;text-align:center;border-top:1px solid #ABABAB;}
-.sidebar-submit a {margin:20px auto;}
+.sidebar-submit a {margin:10px auto;}
 .lessons-container {padding:10px 20px;}
 .lesson-task-box {padding:10px 20px;background:#ACFCAC;border-top:1px solid #ababab;border-bottom:1px solid #ababab;}
 .lesson-hints-expand:hover {cursor:pointer;}

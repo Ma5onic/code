@@ -20,17 +20,20 @@
 		<tr>
 			<td><%= gravatar_for user, size: 30 %> <%= link_to user.username, user %></td>
 			<td><%= user.name if user.name %></td>
-			<td><%= user.points %></td>
+			<td><%= '0' %></td>
 			<td><%= user.location %></td>
 			<td><%= user.email %></td>
 			<% if current_user.admin? %>
 				<td><%= link_to "edit", custom_edit_user_path(user) %></td>
 			<% end %>
-			<% if current_user.admin? && !current_user?(user) %>
-				<td><%= link_to "delete", custom_delete_user_path(user),
+			<% if current_user.admin? %>
+      <td>
+        <% if !current_user?(user) %>
+          <%= link_to "delete", custom_delete_user_path(user),
 						                         method: :delete,
 						                         data: { confirm: "You sure?" } %>
-				</td>
+        <% end %>
+      </td>
 			<% end %>
 		</tr>
 		<% end %>

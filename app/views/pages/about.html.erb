@@ -5,7 +5,7 @@
 <p>Code teaches you the right languages, the right way.</p>
 
 <% if signed_in? %>
-	<p><%= link_to "View Courses!", courses_path, class: "button button-blue" %></p>
+	<p><%= link_to "View Courses!", courses_path, class: "button-nav button-nav-blue" %></p>
 <% else %>
-	<p><%= link_to "Create an account!", signup_path, class: "button button-blue" %></p>
+	<p><%= link_to "Create an account!", signup_path, class: "button-nav button-nav-blue" %></p>
 <% end %>

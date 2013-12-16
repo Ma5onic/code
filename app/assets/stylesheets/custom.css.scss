@@ -8,22 +8,22 @@
 .center {text-align:center}
 
 /* Buttons */
-.button {margin: 10px 10px 20px 10px;padding: 14px 26px;font-size: 14px;line-height: 100%;color: #fff;display:inline-block;vertical-align: middle;text-align: center;cursor: pointer;font-weight: bold;transition: background 0.1s ease-in-out;-webkit-transition: background 0.1s ease-in-out;-moz-transition: background 0.1s ease-in-out;-ms-transition: background 0.1s ease-in-out;-o-transition: background 0.1s ease-in-out;text-shadow: 0 1px rgba(0, 0, 0, 0.3);color: #fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;font-family: 'Helvetica Neue', Helvetica, sans-serif;}
-.button:active {margin-bottom: 19px;}
-.button, .button:hover, .button:active {outline: 0 none;text-decoration: none;color: #fff;}
+.button-nav {margin: 10px 10px 20px 10px;padding: 14px 26px;font-size: 14px;line-height: 100%;color: #fff;display:inline-block;vertical-align: middle;text-align: center;cursor: pointer;font-weight: bold;transition: background 0.1s ease-in-out;-webkit-transition: background 0.1s ease-in-out;-moz-transition: background 0.1s ease-in-out;-ms-transition: background 0.1s ease-in-out;-o-transition: background 0.1s ease-in-out;text-shadow: 0 1px rgba(0, 0, 0, 0.3);color: #fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;font-family: 'Helvetica Neue', Helvetica, sans-serif;}
+.button-nav:active {margin-bottom: 19px;}
+.button-nav, .button-nav:hover, .button-nav:active {outline: 0 none;text-decoration: none;color: #fff;}
 
-.button-blue {background-color: #3fb8e8;box-shadow: 0px 3px 0px 0px #3293ba;}
-.button-blue:hover {background-color: #1baae3;}
-.button-blue:active {box-shadow: 0px 1px 0px 0px #3293ba;}
+.button-nav-blue {background-color: #3fb8e8;box-shadow: 0px 3px 0px 0px #3293ba;}
+.button-nav-blue:hover {background-color: #1baae3;}
+.button-nav-blue:active {box-shadow: 0px 1px 0px 0px #3293ba;}
 
-.button-red {background-color: #f06060;box-shadow: 0px 3px 0px 0px #cd1313;}
-.button-red:hover {background-color: #ed4444;}
-.button-red:active {box-shadow: 0px 1px 0px 0px #cd1313;}
+.button-nav-red {background-color: #f06060;box-shadow: 0px 3px 0px 0px #cd1313;}
+.button-nav-red:hover {background-color: #ed4444;}
+.button-nav-red:active {box-shadow: 0px 1px 0px 0px #cd1313;}
 
-.button-pink {background-color: #ff6a80;box-shadow: 0px 3px 0px 0px #1B8571;}
-.button-pink:hover {background-color: #2DB59C;}
-.button-pink:active {box-shadow: 0px 1px 0px 0px #1B8571;}
+.button-nav-pink {background-color: #ff6a80;box-shadow: 0px 3px 0px 0px #1B8571;}
+.button-nav-pink:hover {background-color: #2DB59C;}
+.button-nav-pink:active {box-shadow: 0px 1px 0px 0px #1B8571;}
 
-.button-green {background-color: #02daaf;box-shadow: 0px 3px 0px 0px #0F6E2C;}
-.button-green:hover {background-color: #2BBDA2;}
-.button-green:active {box-shadow: 0px 1px 0px 0px #0F6E2C;}
+.button-nav-green {background-color: #02daaf;box-shadow: 0px 3px 0px 0px #0F6E2C;}
+.button-nav-green:hover {background-color: #2BBDA2;}
+.button-nav-green:active {box-shadow: 0px 1px 0px 0px #0F6E2C;}

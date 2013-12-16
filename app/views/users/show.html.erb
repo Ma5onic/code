@@ -4,12 +4,12 @@
 	<% if current_user.admin? && !current_user?(@user) %>
 		<%= link_to "delete user", custom_delete_user_path, method: :delete,
 		                                    data: { confirm: "You sure?" },
-		                                    class: "button button-red action-button-top-right" %>
+		                                    class: "button-nav button-nav-red action-button-top-right" %>
 	<% end %>
 	<% if current_user?(@user) %>
-		<%= link_to "update profile", custom_edit_user_path(@user), class: "button button-blue action-button-top-right" %>
+		<%= link_to "update profile", custom_edit_user_path(@user), class: "button-nav button-nav-blue action-button-top-right" %>
 	<% elsif current_user.admin? %>
-		<%= link_to "update profile as admin", custom_edit_user_path(@user), class: "button button-blue action-button-top-right" %>
+		<%= link_to "update profile as admin", custom_edit_user_path(@user), class: "button-nav button-nav-blue action-button-top-right" %>
 	<% end %>
 	<div class="user-gravatar">
 		<%= gravatar_for @user, size: 180, border: true %>

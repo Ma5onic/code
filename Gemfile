@@ -11,6 +11,7 @@ gem 'jbuilder', '1.0.2'
 gem 'bootstrap-sass', '~> 3.0.2.0' # Bootstrap 3
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'faker', '1.1.2'
+gem 'newrelic_rpm'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.8'

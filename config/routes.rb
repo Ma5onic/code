@@ -13,12 +13,12 @@ Code::Application.routes.draw do
   match '/dashboard', to: 'users#dashboard', via: 'get'
 
   # Courses
-  match '/courses/:permalink',        to: 'courses#show',    via: 'get', as: 'custom_course'
-  match '/courses/:permalink/edit',   to: 'courses#edit',    via: 'get', as: 'course_edit'
-  match '/courses/:permalink',        to: 'courses#update',  via: 'put', as: 'course'
-  match '/courses/:permalink',        to: 'courses#destroy', via: 'delete'
-  match '/courses/:permalink',        to: 'courses#update',  via: 'patch'
-  match '/courses/:permalink',        to: 'courses#update',  via: 'post'
+  match '/courses/:permalink',      to: 'courses#show',    via: 'get', as: 'custom_course'
+  match '/courses/:permalink/edit', to: 'courses#edit',    via: 'get', as: 'course_edit'
+  match '/courses/:permalink',      to: 'courses#update',  via: 'put', as: 'course'
+  match '/courses/:permalink',      to: 'courses#destroy', via: 'delete'
+  match '/courses/:permalink',      to: 'courses#update',  via: 'patch'
+  match '/courses/:permalink',      to: 'courses#update',  via: 'post'
 
 
   # Tracks
